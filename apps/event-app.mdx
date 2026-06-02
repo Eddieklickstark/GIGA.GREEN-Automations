@@ -1,35 +1,25 @@
 ---
 title: Event-App
-description: Eigenständige Web-App rund um Events — Teilnehmer- und Adressdaten, Login per Magic-Link, tägliche Aktualisierung.
+description: Eigenständige Web-App rund um Events — Teilnehmer-, Lead- und Adressdaten, Login per Magic-Link, tägliche Aktualisierung.
 ---
 
 <Callout kind="info">
-  **Typ:** Eigene Web-App (Next.js) · **Status:** 🟢 Aktiv · **Quelle:** GitHub `gigagreen-event-app`
+  **Typ:** Eigene Web-App (Next.js) · **Status:** 🟢 Aktiv · **Eigene Doku vorhanden**
 </Callout>
 
-## Zweck
+## Was es ist
 
-Die Event-App unterstützt die Event- und Messe-Arbeit von GIGA.GREEN: Sie verwaltet Teilnehmer-/Kontaktdaten rund um Events und reichert Adressinformationen an. Sie arbeitet mit denselben Event-Daten, die auch die Make-Event-Flows in Zoho schreiben.
+Das Event-System v2 für GIGA.GREEN Roadshows, Messen und Lunch-Events: filterbare Lead-Liste aus Zoho, Event-Erstellung mit Auto-Templates (Brevo, Webflow, Slack), Owner-Portal und Lead-Anreicherung. Sie arbeitet mit denselben Event-Daten, die auch die Make-Event-Flows in Zoho schreiben.
 
-## Auf einen Blick
+## Vollständige Dokumentation
 
-| | |
-| --- | --- |
-| **Tech-Stack** | Next.js (App Router) |
-| **Login** | Magic-Link (Auth.js v5) |
-| **Aktualisierung** | Täglicher Cron-Job |
-| **Repo** | [github.com/Eddieklickstark/gigagreen-event-app _(zu bestätigen)_](https://github.com) |
+Die Event-App hat eine **eigene, umfangreiche Doku** (Architektur, Datenmodell, Enrichment-Pipeline, Betrieb). Sie wird mit der App gepflegt:
 
-## Zusammenspiel mit den Event-Flows
-
-```mermaid
-flowchart LR
-  FORM[Event-/Messe-Formular] --> MAKE[Make Event-Flows]
-  MAKE --> ZOHO[(Zoho CRM)]
-  EVAPP[Event-App] --- ZOHO
-  EVAPP --> CRON[Täglicher Cron:<br/>Adress-/Datenpflege]
-```
-
-<Callout kind="info">
-  Diese Seite ist ein Platzhalter mit dem, was wir sicher wissen. **Bitte ergänze den Kontext:** Was genau leistet die App im Event-Prozess (Anmeldung, Check-in, Nachbearbeitung?), wer nutzt sie, und wo läuft sie (Hosting/Domain)? Dann arbeite ich die Seite vollständig aus.
-</Callout>
+<Columns cols={2}>
+  <Card title="Event-Doku öffnen" icon="book-open" href="https://docs.events.giga.green/">
+    Architektur, Schema, Enrichment-Flow, Operations und Changelog.
+  </Card>
+  <Card title="Event-App öffnen" icon="external-link" href="https://events.giga.green/">
+    Die Live-App (Login per Magic-Link).
+  </Card>
+</Columns>
