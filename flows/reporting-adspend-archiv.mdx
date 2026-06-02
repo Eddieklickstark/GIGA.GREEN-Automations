@@ -1,10 +1,10 @@
 ---
 title: AdSpend Tägliche Archivierung
-description: Liest täglich das Supermetrics-Ad-Spend-Sheet und schreibt die Werte in ein Archiv-Sheet, damit die Werbeausgaben dauerhaft erhalten bleiben.
+description: Liest täglich das Ad-Spend-Sheet von Supermetrics und schreibt die Werte in ein Archiv-Sheet, damit die Werbeausgaben dauerhaft erhalten bleiben.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 4455501
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 4455501
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Liest täglich das Supermetrics-Ad-Spend-Sheet und schreibt die Wer
 
 ## In a nutshell
 
-Das Supermetrics-Sheet zeigt immer nur die **aktuellen Ad-Spend-Werte** und wird laufend überschrieben. Dieser kleine Flow liest die Werte aus und hängt sie an ein **Archiv-Sheet** an. So bleibt der tägliche Verlauf der Werbeausgaben erhalten, als Datenbasis für Reporting und Dashboards.
+Das Sheet von Supermetrics zeigt immer nur die **aktuellen Werbeausgaben** und wird laufend überschrieben. Dieser kleine Flow liest die Werte aus und hängt sie an ein **Archiv-Sheet** an. So bleibt der tägliche Verlauf der Werbeausgaben erhalten, als Datenbasis für Reporting und Dashboards.
 
 ## Ablauf
 
@@ -24,7 +24,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Google Sheets — Inhalt des aktuellen Ad-Spend-Sheets wird gelesen
+- **Auslöser:** Google Sheets, der Inhalt des aktuellen Ad-Spend-Sheets wird gelesen
 - **Häufigkeit:** Täglich
 - **Schreibt nach:** Google Sheets (Archiv-Sheet)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4455501/edit)
@@ -33,7 +33,7 @@ flowchart TD
 
 <Steps>
   <Step title="Aktuelles Sheet lesen">
-    Der Flow liest den **Inhalt des aktuellen Supermetrics-Ad-Spend-Sheets** aus.
+    Der Flow liest den Inhalt des aktuellen Ad-Spend-Sheets von Supermetrics aus.
   </Step>
   <Step title="Ins Archiv schreiben">
     Die ausgelesenen Werte werden als **neue Zeile** in das Archiv-Sheet geschrieben.
@@ -44,11 +44,11 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Aktuelle Ad-Spend-Werte aus dem Supermetrics-Sheet | Neue Zeile im Archiv-Sheet |
+| Aktuelle Werbeausgaben aus dem Sheet von Supermetrics | Neue Zeile im Archiv-Sheet |
 
 ### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
 | Keine neue Zeile im Archiv | Flow nicht ausgeführt oder Google-Sheets-Verbindung abgelaufen | Im Make-Szenario die letzte Ausführung prüfen, Google-Connection neu autorisieren |
-| Leere oder falsche Werte im Archiv | Quell-Sheet von Supermetrics nicht aktualisiert oder verschoben | Prüfen, ob das Supermetrics-Sheet befüllt ist und der Sheet-Bezug im Lese-Modul stimmt |
+| Leere oder falsche Werte im Archiv | Quell-Sheet von Supermetrics nicht aktualisiert oder verschoben | Prüfen, ob das Sheet von Supermetrics befüllt ist und der Sheet-Bezug im Lese-Modul stimmt |

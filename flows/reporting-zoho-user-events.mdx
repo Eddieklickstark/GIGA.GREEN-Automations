@@ -1,10 +1,10 @@
 ---
 title: Zoho User + Events → Spreadsheet (wöchentlich)
-description: Holt wöchentlich die AE-/User-Liste und die Event-Auswahlwerte aus Zoho CRM und schreibt sie in ein Google Sheet, als Datenbasis u. a. für die Owner-Zuordnung.
+description: Holt wöchentlich die Liste der Account Executives und die Auswahlwerte des Event-Feldes aus Zoho CRM und schreibt sie in ein Google Sheet, als Datenbasis unter anderem für die Owner-Zuordnung.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 3970929
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 3970929
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Holt wöchentlich die AE-/User-Liste und die Event-Auswahlwerte aus
 
 ## In a nutshell
 
-Damit nachgelagerte Flows (z. B. die Owner-Zuordnung von Leads) mit aktuellen Stammdaten arbeiten, holt dieser Flow **wöchentlich die Zoho-User-Liste (AEs)** und die **Auswahlwerte des Event-Feldes** und schreibt beides in ein Google Sheet. Vorher leert er die alten Werte, damit das Sheet immer den aktuellen Stand zeigt.
+Damit nachgelagerte Flows wie die Owner-Zuordnung von Leads mit aktuellen Stammdaten arbeiten, holt dieser Flow **wöchentlich die Liste der Nutzer in Zoho, also die Account Executives**, und die **Auswahlwerte des Event-Feldes** und schreibt beides in ein Google Sheet. Vorher leert er die alten Werte, damit das Sheet immer den aktuellen Stand zeigt.
 
 ## Ablauf
 
@@ -32,9 +32,9 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Google Sheets — Zielbereich wird geleert (Start des Laufs)
+- **Auslöser:** Google Sheets, der Zielbereich wird zum Start des Laufs geleert
 - **Häufigkeit:** Wöchentlich
-- **Schreibt nach:** Google Sheets (User-Liste + Event-Werte)
+- **Schreibt nach:** Google Sheets, die Nutzerliste und die Event-Werte
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/3970929/edit)
 
 ## Im Detail
@@ -43,11 +43,11 @@ flowchart TD
   <Step title="Sheet vorbereiten">
     Der Zielbereich im Google Sheet wird **geleert**, damit anschließend nur aktuelle Daten stehen.
   </Step>
-  <Step title="User / AEs holen">
-    Über einen Zweig werden die **Zoho-User (AEs)** abgefragt und einzeln als Zeilen ins Sheet geschrieben.
+  <Step title="Account Executives holen">
+    Über einen Zweig werden die **Nutzer in Zoho, also die Account Executives**, abgefragt und einzeln als Zeilen ins Sheet geschrieben.
   </Step>
   <Step title="Event-Felder holen">
-    Im zweiten Zweig werden die **Zoho-Felder aufgelistet**. Pro Feld wird geprüft, ob es das **Event-Feld** ist.
+    Im zweiten Zweig werden die **Felder in Zoho aufgelistet**. Pro Feld wird geprüft, ob es das **Event-Feld** ist.
   </Step>
   <Step title="Event-Werte schreiben">
     Trifft die Prüfung **Event-Feld** zu, werden die zugehörigen Auswahlwerte ins Sheet geschrieben.
@@ -58,12 +58,12 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Zoho-User-Liste (AEs), Zoho-Feldliste inkl. Event-Picklist | Google Sheet mit aktueller User-Liste und Event-Auswahlwerten |
+| Liste der Account Executives aus Zoho, Feldliste aus Zoho samt Auswahlwerten des Event-Feldes | Google Sheet mit aktueller Nutzerliste und den Auswahlwerten des Event-Feldes |
 
 ### Wichtige Regeln
 
 <Callout kind="info">
-  **Nur das Event-Feld wird übernommen:** Beim Durchlaufen der Zoho-Felder schreibt der Flow ausschließlich das Feld mit der Bezeichnung **„Event"** ins Sheet — alle anderen Felder werden übersprungen.
+  **Nur das Event-Feld wird übernommen:** Beim Durchlaufen der Zoho-Felder schreibt der Flow ausschließlich das Feld mit der Bezeichnung **„Event"** ins Sheet, alle anderen Felder werden übersprungen.
 </Callout>
 
 ### Fehlerfälle
@@ -71,5 +71,5 @@ flowchart TD
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
 | Sheet bleibt leer nach dem Lauf | Zoho-Verbindung abgelaufen oder Abfrage liefert keine Daten | Zoho-Connection neu autorisieren, letzte Ausführung im Make-Szenario prüfen |
-| User fehlen / veraltet | Wöchentlicher Lauf nicht ausgeführt | Im Make-Szenario die letzte Ausführung und den Zeitplan prüfen |
-| Event-Werte fehlen | Event-Feld in Zoho umbenannt — Filter „Ist Event Feld?" greift nicht mehr | Feldbezeichnung in Zoho prüfen und ggf. den Filter im Szenario anpassen |
+| Nutzer fehlen oder sind veraltet | Wöchentlicher Lauf nicht ausgeführt | Im Make-Szenario die letzte Ausführung und den Zeitplan prüfen |
+| Event-Werte fehlen | Event-Feld in Zoho umbenannt, der Filter „Ist Event Feld?" greift nicht mehr | Feldbezeichnung in Zoho prüfen und bei Bedarf den Filter im Szenario anpassen |

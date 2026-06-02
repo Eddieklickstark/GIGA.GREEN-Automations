@@ -1,10 +1,10 @@
 ---
-title: Looker Studio Dedup & Testlead-Filter
-description: Überwacht neue Leads im Looker-Studio-Sheet, prüft sie gegen den Bestand auf Dubletten und entfernt Testleads, bevor sie in die bereinigte Liste kommen.
+title: Looker Studio Dedup und Testlead-Filter
+description: Überwacht neue Leads im Sheet für Looker Studio, prüft sie gegen den Bestand auf Dubletten und entfernt Testleads, bevor sie in die bereinigte Liste kommen.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 4317229
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 4317229
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Überwacht neue Leads im Looker-Studio-Sheet, prüft sie gegen den 
 
 ## In a nutshell
 
-Überwacht **neue Leads im Looker-Studio-Sheet**, prüft sie gegen den **Bestand auf Dubletten** und filtert **Testleads** heraus. Nur neue, noch nicht vorhandene Leads landen in der bereinigten Liste, auf der das Looker-Studio-Reporting aufsetzt.
+Überwacht **neue Leads im Sheet für Looker Studio**, prüft sie gegen den **Bestand auf Dubletten** und filtert **Testleads** heraus. Nur neue, noch nicht vorhandene Leads landen in der bereinigten Liste, auf der das Reporting in Looker Studio aufsetzt.
 
 ## Ablauf
 
@@ -28,7 +28,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Google Sheets — neue Zeilen im Lead-Sheet (watchRows)
+- **Auslöser:** Neue Zeilen im Lead-Sheet (Google Sheets, watchRows)
 - **Häufigkeit:** Bei neuen Leads im überwachten Sheet
 - **Schreibt nach:** Google Sheets (bereinigte Lead-Liste)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4317229/edit)
@@ -39,7 +39,7 @@ flowchart TD
   <Step title="Neue Leads suchen">
     Der Flow überwacht das Lead-Sheet und erkennt **neue Zeilen**.
   </Step>
-  <Step title="Dublette prüfen & Testlead filtern">
+  <Step title="Dublette prüfen und Testlead filtern">
     Es wird geprüft, ob der neue Lead **bereits in der Liste** ist. Enthält der Lead das Wort „test", gilt er als **Testlead** und wird ausgeschlossen.
   </Step>
   <Step title="In bereinigte Liste schreiben">
@@ -51,7 +51,7 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Neue Lead-Zeilen aus dem überwachten Google-Sheet | Bereinigte, dublettenfreie Lead-Zeile (ohne Testleads) im Ziel-Sheet |
+| Neue Lead-Zeilen aus dem überwachten Google Sheet | Bereinigte, dublettenfreie Lead-Zeile (ohne Testleads) im Ziel-Sheet |
 
 ### Wichtige Regeln
 
@@ -64,5 +64,5 @@ flowchart TD
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
 | Keine neuen Leads in der bereinigten Liste | watchRows-Trigger findet keine neuen Zeilen oder Connection abgelaufen | Im Make-Szenario die letzte Ausführung prüfen, Google-Sheets-Connection neu autorisieren |
-| Dubletten landen doch in der Liste | Dublettenprüfung greift nicht (z. B. abweichende Schreibweise) | Filter-Schritt „Überprüfen ob neue Leads bereits in der Liste sind" kontrollieren |
+| Dubletten landen doch in der Liste | Dublettenprüfung greift nicht, etwa wegen abweichender Schreibweise | Filter-Schritt „Überprüfen ob neue Leads bereits in der Liste sind" kontrollieren |
 | Testleads landen in der Liste | Test-Filter hat nicht gegriffen | Prüfen, ob das Lead-Feld tatsächlich „test" enthält |

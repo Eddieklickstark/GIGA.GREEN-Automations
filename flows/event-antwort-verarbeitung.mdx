@@ -1,5 +1,5 @@
 ---
-title: Event-Antwort (Zu-/Absage)
+title: Event-Antwort (Zusage oder Absage)
 description: Sagt ein Eingeladener zu oder ab, trägt dieser Flow das in die Google-Sheet-Liste ein, hinterlegt eine Notiz am Lead oder Kontakt in Zoho und meldet das in Slack.
 ---
 
@@ -35,9 +35,9 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — Zu-/Absage auf eine Event-Einladung
+- **Auslöser:** Webhook bei Zusage oder Absage auf eine Event-Einladung
 - **Häufigkeit:** Sofort bei jeder Antwort (Echtzeit)
-- **Schreibt nach:** Google Sheets (Status-Update), Zoho CRM (Notiz an Lead/Kontakt), Slack
+- **Schreibt nach:** Google Sheets (Status-Update), Zoho CRM (Notiz an Lead oder Kontakt), Slack
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/9270028/edit)
 
 ## Im Detail
@@ -46,8 +46,8 @@ flowchart TD
   <Step title="Antwort empfangen">
     Eine **Zu- oder Absage** kommt per Webhook an. Das Feld `status` enthält den Wert `zusage` oder `absage`.
   </Step>
-  <Step title="Eintrag finden & Bot-Prüfung">
-    Der passende Eintrag wird in der **Google-Sheet-Liste** gesucht. Nur wenn ein Eintrag gefunden wurde **und** die Timing-Prüfung (`__ROW_NUMBER__` vorhanden) besteht, geht es weiter — so werden automatisierte Bot-Klicks aussortiert.
+  <Step title="Eintrag finden und Bot-Prüfung">
+    Der passende Eintrag wird in der **Google-Sheet-Liste** gesucht. Nur wenn ein Eintrag gefunden wurde **und** die Timing-Prüfung (`__ROW_NUMBER__` vorhanden) besteht, geht es weiter. So werden automatisierte Bot-Klicks aussortiert.
   </Step>
   <Step title="Sheet aktualisieren">
     Die gefundene Zeile wird mit dem neuen Status **aktualisiert** und die Anrede für die spätere Notiz zwischengespeichert.
@@ -68,7 +68,7 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| `status` (zusage/absage), Antwortdaten zur Event-Einladung | Aktualisierte Sheet-Zeile, Notiz an Zoho-Lead oder -Kontakt, Slack-Meldung in `event-conversions` |
+| `status` (zusage oder absage), Antwortdaten zur Event-Einladung | Aktualisierte Sheet-Zeile, Notiz am Zoho-Lead oder am Kontakt, Slack-Meldung in `event-conversions` |
 
 ### Wichtige Regeln
 
@@ -84,7 +84,7 @@ flowchart TD
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Antwort wird ignoriert | Timing-Prüfung hat angeschlagen (Bot-Verdacht) oder Eintrag im Sheet nicht gefunden | Prüfen, ob die Zeile zur Antwort existiert; bei echten Antworten Timing/`__ROW_NUMBER__`-Logik kontrollieren |
-| Keine Notiz in Zoho | Weder Contact- noch Lead-ID gefunden | In Zoho prüfen, ob Lead/Kontakt zur Antwort existiert |
+| Antwort wird ignoriert | Timing-Prüfung hat angeschlagen (Bot-Verdacht) oder Eintrag im Sheet nicht gefunden | Prüfen, ob die Zeile zur Antwort existiert; bei echten Antworten die Logik um Timing und `__ROW_NUMBER__` kontrollieren |
+| Keine Notiz in Zoho | Weder Contact- noch Lead-ID gefunden | In Zoho prüfen, ob ein Lead oder Kontakt zur Antwort existiert |
 | Status im Sheet nicht aktualisiert | Eintrag nicht gefunden oder Sheet-Verbindung defekt | Google-Sheets-Verbindung und Suchkriterien prüfen |
 | Keine Slack-Meldung | Slack-Verbindung getrennt | Slack-Connection in Make neu verbinden |

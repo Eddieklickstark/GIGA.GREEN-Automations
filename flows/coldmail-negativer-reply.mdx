@@ -1,19 +1,19 @@
 ---
-title: "Cold-Mail: negativer Reply → Weiterleitung Bernd"
-description: Antwortet jemand auf eine Instantly-Cold-Mail, leitet dieser Flow die Antwort per E-Mail an Bernd weiter und protokolliert sie in zwei Google-Sheets.
+title: "Cold Mail: negativer Reply → Weiterleitung Bernd"
+description: Antwortet jemand auf eine Cold Mail in Instantly, leitet dieser Flow die Antwort per E-Mail an Bernd weiter und protokolliert sie in zwei Logs in Google Sheets.
 ---
 
 <Callout kind="info">
-  **Bereich:** Cold-E-Mail & Sonstiges · **Status:** Aktiv · **Make-ID:** 1995270
+  **Bereich:** Cold Mail und Sonstiges · **Status:** Aktiv · **Make-ID:** 1995270
 </Callout>
 
 ## Verwendete Tools
 
-`Instantly` `E-Mail (IMAP/SMTP)` `Google Sheets`
+`Instantly` `E-Mail` `Google Sheets`
 
 ## In a nutshell
 
-Antwortet jemand auf eine **Cold-Mail in Instantly**, meldet Instantly das per Webhook an Make. Dieser Flow leitet die Antwort **per E-Mail an Bernd** weiter, damit sie nicht untergeht, und schreibt sie in **zwei Google-Sheets** mit.
+Antwortet jemand auf eine **Cold Mail in Instantly**, meldet Instantly das per Webhook an Make. Dieser Flow leitet die Antwort **per E-Mail an Bernd** weiter, damit sie nicht untergeht, und schreibt sie in **zwei Logs in Google Sheets** mit.
 
 ## Ablauf
 
@@ -27,16 +27,16 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — Reply-Ereignis aus Instantly
-- **Häufigkeit:** Sofort bei jeder eingehenden Antwort (Echtzeit)
-- **Schreibt nach:** E-Mail an Bernd, Google Sheets (zwei Log-Einträge)
+- **Auslöser:** Webhook mit dem Reply-Ereignis aus Instantly
+- **Häufigkeit:** Sofort bei jeder eingehenden Antwort, also in Echtzeit
+- **Schreibt nach:** E-Mail an Bernd und zwei Log-Einträge in Google Sheets
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1995270/edit)
 
 ## Im Detail
 
 <Steps>
   <Step title="Antwort empfangen">
-    Instantly schickt per **Webhook** ein Reply-Ereignis an Make, sobald ein Empfänger auf eine Cold-Mail antwortet.
+    Instantly schickt per **Webhook** ein Reply-Ereignis an Make, sobald ein Empfänger auf eine Cold Mail antwortet.
   </Step>
   <Step title="Instantly-Daten abrufen">
     Über das **Instantly-Modul** werden die Details zur Antwort geladen.
@@ -45,7 +45,7 @@ flowchart TD
     Die Antwort wird **per E-Mail an Bernd** weitergeleitet.
   </Step>
   <Step title="Protokollieren">
-    Die Antwort wird in **zwei Google-Sheets-Zeilen** als Log abgelegt.
+    Die Antwort wird als Log in **zwei Zeilen in Google Sheets** abgelegt.
   </Step>
 </Steps>
 
@@ -53,12 +53,12 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Reply-Daten aus Instantly (Absender, Nachricht, Kampagne) | Weiterleitungs-E-Mail an Bernd, zwei Google-Sheets-Log-Einträge |
+| Reply-Daten aus Instantly mit Absender, Nachricht und Kampagne | eine Weiterleitung per E-Mail an Bernd und zwei Log-Einträge in Google Sheets |
 
 ### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Bernd erhält keine Weiterleitung | Webhook nicht ausgelöst oder SMTP-Verbindung abgelaufen | Im Make-Szenario die letzte Ausführung prüfen, E-Mail-Connection neu autorisieren |
+| Bernd erhält keine Weiterleitung | Webhook nicht ausgelöst oder die SMTP-Verbindung abgelaufen | Im Make-Szenario die letzte Ausführung prüfen und die E-Mail-Connection neu autorisieren |
 | Keine Instantly-Daten | Instantly-Verbindung getrennt | Instantly-Connection in Make neu verbinden |
-| Antwort fehlt im Google Sheet | Google-Sheets-Verbindung defekt oder Zielblatt verschoben | Sheet-Connection prüfen, Ziel-Tabelle/Blatt im addRow-Modul kontrollieren |
+| Antwort fehlt im Google Sheet | Google-Sheets-Verbindung defekt oder das Zielblatt verschoben | Sheet-Connection prüfen und im addRow-Modul kontrollieren, ob Tabelle und Blatt stimmen |

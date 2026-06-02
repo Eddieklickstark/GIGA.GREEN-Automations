@@ -1,15 +1,15 @@
 ---
 title: AddSales Kosten-Verarbeitung
-description: Schickt AddSales eine Rechnung per Mail, fängt dieser Flow sie ab und lädt die angehängte Rechnungsdatei herunter.
+description: Sobald AddSales eine Rechnung per Mail schickt, fängt dieser Flow sie ab und lädt die angehängte Rechnungsdatei herunter.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 8895203
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 8895203
 </Callout>
 
 ## Verwendete Tools
 
-`E-Mail (Mail-Hook)` `HTTP`
+`E-Mail` `HTTP`
 
 ## In a nutshell
 
@@ -24,7 +24,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Mail-Hook — eingehende Rechnungs-E-Mail von AddSales
+- **Auslöser:** Mail-Hook, eine eingehende Rechnungs-E-Mail von AddSales
 - **Häufigkeit:** Sofort bei jeder eingehenden Rechnungs-Mail (Echtzeit)
 - **Schreibt nach:** Datei-Download (Rechnungsdatei)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/8895203/edit)
@@ -50,5 +50,5 @@ flowchart TD
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Flow wird nicht ausgelöst | Mail-Hook empfängt keine Mail (Weiterleitung/Adresse falsch) | Mail-Hook-Adresse prüfen und Test-Mail an den Hook senden |
+| Flow wird nicht ausgelöst | Mail-Hook empfängt keine Mail, weil Weiterleitung oder Adresse falsch sind | Mail-Hook-Adresse prüfen und Test-Mail an den Hook senden |
 | Datei wird nicht heruntergeladen | Download-Link in der Mail ungültig oder abgelaufen | Im Make-Szenario die letzte Ausführung prüfen, Mail-Inhalt und HTTP-Request kontrollieren |

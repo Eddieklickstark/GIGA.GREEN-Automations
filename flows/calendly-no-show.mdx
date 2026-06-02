@@ -1,10 +1,10 @@
 ---
 title: No-Show markieren
-description: Erscheint jemand nicht zum Termin, markiert dieser Flow den No-Show in der Google-Sheet-Liste.
+description: Erscheint jemand nicht zum Termin, markiert dieser Flow den No-Show in der Liste im Google Sheet.
 ---
 
 <Callout kind="info">
-  **Bereich:** Termine / Calendly · **Status:** Aktiv · **Make-ID:** 6295861
+  **Bereich:** Termine und Calendly · **Status:** Aktiv · **Make-ID:** 6295861
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Erscheint jemand nicht zum Termin, markiert dieser Flow den No-Show
 
 ## In a nutshell
 
-Erscheint jemand nicht zum Termin, kommt ein **Webhook** rein und dieser Flow markiert den Termin in der **Google-Sheet-Liste** als **No-Show**. Zwei Schritte, mehr nicht.
+Erscheint jemand nicht zum Termin, kommt ein **Webhook** rein und dieser Flow markiert den Termin in der **Liste im Google Sheet** als **No-Show**. Zwei Schritte, mehr nicht.
 
 ## Ablauf
 
@@ -25,7 +25,7 @@ flowchart TD
 ## Auf einen Blick
 
 - **Auslöser:** Webhook
-- **Häufigkeit:** Sofort bei No-Show-Meldung (Echtzeit)
+- **Häufigkeit:** Sofort, sobald ein No-Show gemeldet wird (Echtzeit)
 - **Schreibt nach:** Google Sheets (Zeile aktualisieren)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6295861/edit)
 
@@ -44,7 +44,7 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| No-Show-Webhook (Termin-/Zeilen-Identifikation) | Aktualisierte Zeile im Google Sheet |
+| No-Show-Webhook (kennzeichnet Termin und Zeile) | Aktualisierte Zeile im Google Sheet |
 
 ### Fehlerfälle
 

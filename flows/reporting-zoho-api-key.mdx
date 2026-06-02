@@ -1,10 +1,10 @@
 ---
 title: Zoho API-Key (stündlich speichern)
-description: Erneuert stündlich den Zoho-API-Access-Key und legt ihn im Make Data Store ab, damit andere Szenarien ihn wiederverwenden können.
+description: Erneuert stündlich den Access-Key der Zoho-API und legt ihn im Make Data Store ab, damit andere Szenarien ihn wiederverwenden können.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 2129672
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 2129672
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Erneuert stündlich den Zoho-API-Access-Key und legt ihn im Make Da
 
 ## In a nutshell
 
-Erneuert **stündlich den Zoho-API-Access-Key** und legt ihn im **Make Data Store** ab. Ein reiner Infrastruktur-Flow: Er hält ein gültiges Zugriffstoken bereit, damit andere Szenarien die Zoho-API ansprechen können, ohne sich jedes Mal neu zu authentifizieren.
+Erneuert **stündlich den Access-Key der Zoho-API** und legt ihn im **Make Data Store** ab. Ein reiner Infrastruktur-Flow: Er hält ein gültiges Zugriffstoken bereit, damit andere Szenarien die Zoho-API ansprechen können, ohne sich jedes Mal neu zu authentifizieren.
 
 ## Ablauf
 
@@ -24,7 +24,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** HTTP — Token-Anfrage gegen die Zoho-API
+- **Auslöser:** HTTP-Anfrage für ein Token gegen die Zoho-API
 - **Häufigkeit:** Stündlich
 - **Schreibt nach:** Make Data Store (gecachter Zoho-Access-Key)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2129672/edit)
@@ -33,7 +33,7 @@ flowchart TD
 
 <Steps>
   <Step title="Key anfordern">
-    Per HTTP-Request wird ein **frischer Zoho-API-Access-Key** abgerufen.
+    Per HTTP-Request wird ein **frischer Access-Key der Zoho-API** abgerufen.
   </Step>
   <Step title="Key speichern">
     Der Access-Key wird als Datensatz im **Make Data Store** abgelegt und steht dort zentral zur Verfügung.
@@ -56,6 +56,6 @@ flowchart TD
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Kein aktueller Key im Data Store | HTTP-Request gegen Zoho schlägt fehl (abgelaufene Credentials, geänderter Endpoint) | Im Make-Szenario die letzte Ausführung prüfen, Zoho-Credentials/HTTP-Konfiguration kontrollieren |
+| Kein aktueller Key im Data Store | HTTP-Request gegen Zoho schlägt fehl (abgelaufene Credentials, geänderter Endpoint) | Im Make-Szenario die letzte Ausführung prüfen, Zoho-Credentials und HTTP-Konfiguration kontrollieren |
 | Abhängige Szenarien können sich nicht an Zoho authentifizieren | Veralteter oder fehlender Key im Data Store | Diesen Flow manuell ausführen und prüfen, ob ein gültiger Key geschrieben wird |
 | Stündliche Ausführung läuft nicht | Szenario deaktiviert oder Zeitplan gestoppt | Aktivierungs-Status und Scheduling im Make-Szenario prüfen |

@@ -1,10 +1,10 @@
 ---
-title: "Reminder: Yoyaba & AddSales Kosten eintragen"
-description: Schickt Josh regelmäßig eine Erinnerungs-E-Mail, damit er die Yoyaba- und AddSales-Kosten einträgt.
+title: "Reminder: Yoyaba und AddSales Kosten eintragen"
+description: Schickt Josh regelmäßig eine Erinnerung per E-Mail, damit er die Kosten für Yoyaba und AddSales einträgt.
 ---
 
 <Callout kind="info">
-  **Bereich:** Cold-E-Mail & Sonstiges · **Status:** Aktiv · **Make-ID:** 4867273
+  **Bereich:** Cold Mail und Sonstiges · **Status:** Aktiv · **Make-ID:** 4867273
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Schickt Josh regelmäßig eine Erinnerungs-E-Mail, damit er die Yoy
 
 ## In a nutshell
 
-Ein Ein-Modul-Flow: Er **erinnert Josh per E-Mail**, die **Yoyaba- und AddSales-Kosten** einzutragen. So bleiben die Kosten im Reporting aktuell, ohne dass jemand dran denken muss.
+Ein Flow aus einem einzigen Modul: Er **erinnert Josh per E-Mail**, die **Kosten für Yoyaba und AddSales** einzutragen. So bleiben die Kosten im Reporting aktuell, ohne dass jemand dran denken muss.
 
 ## Ablauf
 
@@ -24,8 +24,8 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Gmail-Versand-Modul (sendet die Erinnerungs-E-Mail)
-- **Häufigkeit:** Wiederkehrend, vermutlich per Zeitplan — zu bestätigen
+- **Auslöser:** Gmail-Modul, das die Erinnerung per E-Mail verschickt
+- **Häufigkeit:** Wiederkehrend, vermutlich per Zeitplan, noch zu bestätigen
 - **Schreibt nach:** E-Mail an Josh
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4867273/edit)
 
@@ -33,7 +33,7 @@ flowchart TD
 
 <Steps>
   <Step title="Erinnerung versenden">
-    Das **Gmail-Modul** verschickt eine Erinnerungs-E-Mail an Josh mit dem Hinweis, die **Yoyaba- und AddSales-Kosten** einzutragen.
+    Das **Gmail-Modul** verschickt eine Erinnerung per E-Mail an Josh mit dem Hinweis, die **Kosten für Yoyaba und AddSales** einzutragen.
   </Step>
 </Steps>
 
@@ -41,11 +41,11 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Keine externen Eingangsdaten (Szenario löst sich selbst aus) | Erinnerungs-E-Mail an Josh |
+| Keine externen Eingangsdaten, da das Szenario sich selbst auslöst | eine Erinnerung per E-Mail an Josh |
 
 ### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Keine Erinnerungs-E-Mail | Szenario deaktiviert oder Zeitplan nicht gesetzt | Im Make-Szenario prüfen, ob es aktiv ist und ein Zeitplan hinterlegt ist |
+| Keine Erinnerung per E-Mail | Szenario deaktiviert oder kein Zeitplan gesetzt | Im Make-Szenario prüfen, ob es aktiv ist und ein Zeitplan hinterlegt ist |
 | E-Mail wird nicht zugestellt | Gmail-Verbindung abgelaufen | Gmail-Connection in Make neu autorisieren |

@@ -1,10 +1,10 @@
 ---
 title: Google Ads SQL Offline-Conversion-Upload
-description: Überwacht das SQL-Sheet, prüft Lead-Source, Click-ID und das 90-Tage-Fenster und lädt qualifizierte Offline-Conversions zu Google Ads hoch.
+description: Überwacht das SQL-Sheet, prüft Lead-Source, Click-ID und das Fenster von 90 Tagen und lädt qualifizierte Offline-Conversions zu Google Ads hoch.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 6025678
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 6025678
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Überwacht das SQL-Sheet, prüft Lead-Source, Click-ID und das 90-T
 
 ## In a nutshell
 
-Dieser Flow meldet **Sales-Qualified-Leads** aus Webseite und bezahlter Werbung als **Offline-Conversion** an **Google Ads** zurück. So optimiert Google Ads die Kampagnen auf abgeschlossene Leads. Er überwacht das **SQL-Sheet** und lädt für jeden passenden Lead eine Conversion hoch, aber nur wenn **Lead-Source, Click-ID und das 90-Tage-Fenster** passen.
+Dieser Flow meldet **Sales-Qualified-Leads** aus Webseite und bezahlter Werbung als **Offline-Conversion** an **Google Ads** zurück. So optimiert Google Ads die Kampagnen auf abgeschlossene Leads. Er überwacht das **SQL-Sheet** und lädt für jeden passenden Lead eine Conversion hoch, aber nur wenn **Lead-Source, Click-ID und das Fenster von 90 Tagen** passen.
 
 ## Ablauf
 
@@ -29,7 +29,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Google Sheets — neue Zeile im SQL-Sheet
+- **Auslöser:** Neue Zeile im SQL-Sheet (Google Sheets)
 - **Häufigkeit:** Laufend bei jedem neuen SQL-Eintrag
 - **Schreibt nach:** Google Ads (Offline-Conversion)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6025678/edit)
@@ -43,11 +43,11 @@ flowchart TD
   <Step title="Lead-Source prüfen">
     Der Lead wird nur weiterverarbeitet, wenn die **Lead-Source „Webseite" oder „Online Advertising"** ist.
   </Step>
-  <Step title="Lead laden & Click-ID prüfen">
+  <Step title="Lead laden und Click-ID prüfen">
     Der zugehörige **Lead wird aus Zoho CRM geladen**. Weiter geht es nur, wenn eine **Click-ID** vorhanden ist.
   </Step>
-  <Step title="90-Tage-Fenster prüfen">
-    Es wird berechnet, ob der Klick **innerhalb des 90-Tage-Click-Through-Windows** liegt.
+  <Step title="Fenster von 90 Tagen prüfen">
+    Es wird berechnet, ob der Klick **innerhalb des Fensters von 90 Tagen** liegt, in dem eine Conversion noch zählt.
   </Step>
   <Step title="Conversion hochladen">
     Liegt der Klick im Fenster, wird die **Offline-Conversion zu Google Ads hochgeladen**.
@@ -66,7 +66,7 @@ flowchart TD
   **Drei Bedingungen müssen erfüllt sein**, sonst wird keine Conversion hochgeladen:
   - **Lead-Source** = „Webseite" oder „Online Advertising"
   - eine **Click-ID** ist am Lead hinterlegt
-  - der Klick liegt **innerhalb von 90 Tagen** (Click-Through-Window)
+  - der Klick liegt **innerhalb von 90 Tagen**, also im Fenster, in dem eine Conversion noch zählt
 </Callout>
 
 ### Fehlerfälle
@@ -74,6 +74,6 @@ flowchart TD
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
 | Conversion erscheint nicht in Google Ads | Eine der drei Bedingungen nicht erfüllt (Lead-Source, Click-ID, 90 Tage) | Lead in Zoho prüfen: Lead-Source, Click-ID und Klick-Datum kontrollieren |
-| Flow läuft, lädt aber nie hoch | Click-ID fehlt durchgehend oder Klicks älter als 90 Tage | Tracking/Click-ID-Erfassung beim Lead-Eingang prüfen |
+| Flow läuft, lädt aber nie hoch | Click-ID fehlt durchgehend oder Klicks älter als 90 Tage | Tracking und Erfassung der Click-ID beim Lead-Eingang prüfen |
 | Upload schlägt fehl | Google-Ads-Verbindung abgelaufen oder Conversion-Action falsch | Google-Ads-Connection neu autorisieren, letzte Ausführung im Szenario prüfen |
-| Falscher Lead geladen | Lead-Bezug aus dem SQL-Sheet stimmt nicht | Zuordnung Sheet-Zeile → Zoho-Lead im Szenario prüfen |
+| Falscher Lead geladen | Lead-Bezug aus dem SQL-Sheet stimmt nicht | Zuordnung von der Sheet-Zeile zum Zoho-Lead im Szenario prüfen |

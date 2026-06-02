@@ -1,6 +1,6 @@
 ---
 title: EXPO Real 2025 Landingpage
-description: Meldet sich jemand über die EXPO-Real-2025-Landingpage an, legt dieser Flow ein Event in Zoho an, postet in Slack und schickt eine Bestätigungs-E-Mail.
+description: Meldet sich jemand über die Landingpage zur EXPO Real 2025 an, legt dieser Flow ein Event in Zoho an, postet in Slack und schickt eine Bestätigung per E-Mail.
 ---
 
 <Callout kind="info">
@@ -13,7 +13,7 @@ description: Meldet sich jemand über die EXPO-Real-2025-Landingpage an, legt di
 
 ## In a nutshell
 
-Meldet sich jemand über die **EXPO-Real-2025-Landingpage** an, legt dieser Flow in Zoho ein **Event** an, postet eine **Slack**-Meldung und schickt dem Interessenten eine **Bestätigungs-E-Mail**. Vorher sucht er den passenden Lead in Zoho, damit alles richtig zugeordnet wird.
+Meldet sich jemand über die **Landingpage zur EXPO Real 2025** an, legt dieser Flow in Zoho ein **Event** an, postet eine **Slack**-Meldung und schickt dem Interessenten eine **Bestätigung per E-Mail**. Vorher sucht er den passenden Lead in Zoho, damit alles richtig zugeordnet wird.
 
 ## Ablauf
 
@@ -31,9 +31,9 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — Formular der EXPO Real 2025 Landingpage
+- **Auslöser:** Webhook vom Formular der EXPO Real 2025 Landingpage
 - **Häufigkeit:** Sofort bei jeder Anmeldung (Echtzeit)
-- **Schreibt nach:** Zoho CRM (Event), Slack, Gmail (Bestätigungs-E-Mail)
+- **Schreibt nach:** Zoho CRM (Event), Slack, Gmail (Bestätigung per E-Mail)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6501797/edit)
 
 ## Im Detail
@@ -45,11 +45,11 @@ flowchart TD
   <Step title="Lead suchen">
     Der Flow sucht in Zoho nach dem passenden **Lead**, um das Event korrekt zuordnen zu können.
   </Step>
-  <Step title="Event anlegen & benachrichtigen">
-    Ist ein Lead vorhanden, wird in Zoho ein **Event** angelegt, eine **Slack-Meldung** gepostet und eine **Bestätigungs-E-Mail** versendet.
+  <Step title="Event anlegen und benachrichtigen">
+    Ist ein Lead vorhanden, wird in Zoho ein **Event** angelegt, eine **Slack-Meldung** gepostet und eine **Bestätigung per E-Mail** versendet.
   </Step>
   <Step title="Lead nicht vorhanden">
-    Wird kein Lead gefunden, versendet der Flow dennoch eine **Bestätigungs-E-Mail** an den Interessenten.
+    Wird kein Lead gefunden, versendet der Flow dennoch eine **Bestätigung per E-Mail** an den Interessenten.
   </Step>
 </Steps>
 
@@ -57,13 +57,13 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Anmeldedaten vom EXPO-Real-2025-Landingpage-Formular, Eventzeit | Zoho-Event, Slack-Meldung, Bestätigungs-E-Mail (Gmail) |
+| Anmeldedaten vom Formular der Landingpage zur EXPO Real 2025, Eventzeit | Zoho-Event, Slack-Meldung, Bestätigung per E-Mail (Gmail) |
 
 ### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
 | Kein Event in Zoho | Webhook nicht ausgelöst, kein Lead gefunden oder Zoho-Verbindung abgelaufen | Letzte Ausführung in Make prüfen, Zoho-Connection neu autorisieren |
-| Keine Bestätigungs-E-Mail | Gmail-Verbindung getrennt | Gmail-Connection in Make neu verbinden |
+| Keine Bestätigung per E-Mail | Gmail-Verbindung getrennt | Gmail-Connection in Make neu verbinden |
 | Keine Slack-Meldung | Slack-Verbindung getrennt | Slack-Connection in Make neu verbinden |
 | Event nicht zugeordnet | Passender Lead in Zoho nicht gefunden | Prüfen, ob der Lead in Zoho existiert; ggf. Suchkriterien kontrollieren |

@@ -4,7 +4,7 @@ description: Nimmt tägliche Klickdaten per Webhook entgegen und schreibt sie al
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 2082018
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 2082018
 </Callout>
 
 ## Verwendete Tools
@@ -25,7 +25,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — eingehende Klickdaten
+- **Auslöser:** Webhook mit den eingehenden Klickdaten
 - **Häufigkeit:** Täglich (bei jedem Webhook-Aufruf)
 - **Schreibt nach:** Google Sheets (Reporting-Sheet)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2082018/edit)
@@ -40,7 +40,7 @@ flowchart TD
     Die Werte werden in einer Variablen **aufbereitet**.
   </Step>
   <Step title="Ins Sheet schreiben">
-    Die Klickdaten werden als **neue Zeile ins Google Sheet** geschrieben.
+    Die Klickdaten werden als **neue Zeile in das Google Sheet** geschrieben.
   </Step>
 </Steps>
 
@@ -48,7 +48,7 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Klickdaten aus dem Webhook | Neue Zeile im Google-Sheet (Reporting) |
+| Klickdaten aus dem Webhook | Neue Zeile im Google Sheet (Reporting) |
 
 ### Fehlerfälle
 
@@ -56,4 +56,4 @@ flowchart TD
 | --- | --- | --- |
 | Keine neue Zeile im Sheet | Webhook nicht ausgelöst | Im Make-Szenario die letzte Ausführung prüfen, Quelle des Webhook-Aufrufs kontrollieren |
 | Zeile mit leeren Werten | Aufbereitungs-Schritt erhält kein erwartetes Feld | Variablen-Schritt und Webhook-Payload prüfen |
-| Schreiben ins Sheet schlägt fehl | Google-Sheets-Verbindung getrennt oder Sheet/Tab umbenannt | Google-Sheets-Connection und Zielsheet in Make prüfen |
+| Schreiben in das Sheet schlägt fehl | Google-Sheets-Verbindung getrennt oder Sheet beziehungsweise Tab umbenannt | Google-Sheets-Connection und Zielsheet in Make prüfen |

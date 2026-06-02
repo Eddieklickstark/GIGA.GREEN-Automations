@@ -1,10 +1,10 @@
 ---
 title: Inbound-Termin → AE in Zoho + Google Calendar
-description: Bucht ein Inbound-Lead einen Infotermin, setzt dieser Flow den zuständigen Account Executive als Meeting-Host in Zoho, lädt ihn im Google Calendar ein und trägt den Termin in die SQL-Liste ein.
+description: Bucht ein Inbound-Lead einen Infotermin, setzt dieser Flow den zuständigen Account Executive als Host des Meetings in Zoho, lädt ihn im Google Calendar ein und trägt den Termin in die SQL-Liste ein.
 ---
 
 <Callout kind="info">
-  **Bereich:** Termine / Calendly · **Status:** Aktiv · **Make-ID:** 4680166
+  **Bereich:** Termine und Calendly · **Status:** Aktiv · **Make-ID:** 4680166
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Bucht ein Inbound-Lead einen Infotermin, setzt dieser Flow den zust
 
 ## In a nutshell
 
-Bucht ein **Inbound-Lead** einen Infotermin, hängt dieser Flow den zuständigen **Account Executive** richtig an den Termin: Er setzt ihn in **Zoho** als **Meeting-Host** und lädt ihn im **Google Calendar** ein. Den Termin trägt er außerdem in die **SQL-Liste** (Google Sheet) ein.
+Bucht ein **Inbound-Lead** einen Infotermin, hängt dieser Flow den zuständigen **Account Executive** richtig an den Termin: Er setzt ihn in **Zoho** als **Host des Meetings** und lädt ihn im **Google Calendar** ein. Den Termin trägt er außerdem in die **SQL-Liste** (Google Sheet) ein.
 
 ## Ablauf
 
@@ -30,16 +30,16 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — AE- und Lead-Daten vom Zoho Inbound Lead
+- **Auslöser:** Webhook mit den Daten zum AE und zum Zoho Inbound Lead
 - **Häufigkeit:** Sofort bei eingehendem Inbound-Termin (Echtzeit)
-- **Schreibt nach:** Zoho CRM (Meeting-Host), Google Calendar (Einladung), Google Sheets (SQL-Liste)
+- **Schreibt nach:** Zoho CRM (Host des Meetings), Google Calendar (Einladung), Google Sheets (SQL-Liste)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4680166/edit)
 
 ## Im Detail
 
 <Steps>
   <Step title="Daten empfangen">
-    Ein Webhook liefert die **AE- und Lead-Daten** des Zoho Inbound Leads.
+    Ein Webhook liefert die **Daten zum AE und zum Zoho Inbound Lead**.
   </Step>
   <Step title="Termin in Zoho suchen">
     Der Flow sucht in Zoho CRM den **Infotermin des Inbound-Leads**.
@@ -50,8 +50,8 @@ flowchart TD
   <Step title="In SQL-Liste eintragen">
     Ist der Kalendertermin vorhanden, wird er in die **SQL-Liste** (Google Sheet) eingetragen.
   </Step>
-  <Step title="AE einladen & als Host setzen">
-    Der **AE wird im Google Calendar zum Termin eingeladen** und in Zoho CRM als **Meeting-Host (Infotermin)** festgelegt.
+  <Step title="AE einladen und als Host setzen">
+    Der **AE wird im Google Calendar zum Termin eingeladen** und in Zoho CRM als **Host des Infotermins** festgelegt.
   </Step>
 </Steps>
 
@@ -59,12 +59,12 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| AE- und Lead-Daten des Zoho Inbound Leads (per Webhook) | Zoho-Meeting mit AE als Host, Google-Calendar-Einladung an den AE, Zeile in der SQL-Liste |
+| Daten zum AE und zum Zoho Inbound Lead (per Webhook) | Zoho-Meeting mit AE als Host, Einladung an den AE im Google Calendar, Zeile in der SQL-Liste |
 
 ### Wichtige Regeln
 
 <Callout kind="info">
-  **Nur bei vorhandenem Kalendertermin:** Die SQL-Listen-Zeile wird nur geschrieben, wenn im Google Calendar ein passender Termin gefunden wurde.
+  **Nur bei vorhandenem Kalendertermin:** Die Zeile in der SQL-Liste wird nur geschrieben, wenn im Google Calendar ein passender Termin gefunden wurde.
 </Callout>
 
 ### Fehlerfälle
@@ -74,4 +74,4 @@ flowchart TD
 | AE nicht als Host gesetzt | Infotermin in Zoho nicht gefunden | Webhook-Daten und Zoho-Suche prüfen |
 | Keine Kalender-Einladung | Termin im Google Calendar nicht gefunden | Calendar-Suche und Zeitfenster kontrollieren |
 | Kein Eintrag in SQL-Liste | Kalendertermin fehlte (Filter greift) | Prüfen, ob der Google-Calendar-Termin existiert |
-| Zoho-/Calendar-Verbindung abgelaufen | Connection getrennt | Verbindungen in Make neu autorisieren |
+| Verbindung zu Zoho oder Calendar abgelaufen | Connection getrennt | Verbindungen in Make neu autorisieren |

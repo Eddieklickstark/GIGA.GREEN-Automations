@@ -24,7 +24,7 @@
             ]
           },
           {
-            "group": "Lead-Intake / Webseite",
+            "group": "Lead-Intake und Webseite",
             "icon": "globe",
             "pages": [
               { "title": "Heyflow Anfrage (DE) → Zoho", "path": "flows/webseite-heyflow-de", "icon": "form-input" },
@@ -34,7 +34,7 @@
             ]
           },
           {
-            "group": "Termine / Calendly",
+            "group": "Termine und Calendly",
             "icon": "calendar",
             "pages": [
               { "title": "Calendly Bookings → Zoho", "path": "flows/calendly-bookings-zoho", "icon": "calendar-check" },
@@ -49,12 +49,12 @@
             "pages": [
               { "title": "Event-Formular Messe", "path": "flows/event-formular-messe", "icon": "tent" },
               { "title": "Event-Formular → Slack + Notiz", "path": "flows/event-formular-zoho-slack", "icon": "message-square" },
-              { "title": "Event-Antwort (Zu-/Absage)", "path": "flows/event-antwort-verarbeitung", "icon": "check-check" },
+              { "title": "Event-Antwort (Zusage oder Absage)", "path": "flows/event-antwort-verarbeitung", "icon": "check-check" },
               { "title": "EXPO Real 2025 Landingpage", "path": "flows/expo-real-2025-lp", "icon": "building-2" }
             ]
           },
           {
-            "group": "Reporting / Dashboard",
+            "group": "Reporting und Dashboard",
             "icon": "chart-line",
             "pages": [
               { "title": "Instantly Kampagnen-KPIs", "path": "flows/reporting-instantly-kpi", "icon": "mail-check" },
@@ -68,11 +68,11 @@
             ]
           },
           {
-            "group": "Cold-E-Mail & Sonstiges",
+            "group": "Cold Mail und Sonstiges",
             "icon": "mail",
             "pages": [
-              { "title": "Cold-Mail negativer Reply → Bernd", "path": "flows/coldmail-negativer-reply", "icon": "reply" },
-              { "title": "Reminder: Yoyaba & AddSales Kosten", "path": "flows/reminder-kosten", "icon": "bell" }
+              { "title": "Cold Mail negativer Reply → Bernd", "path": "flows/coldmail-negativer-reply", "icon": "reply" },
+              { "title": "Reminder: Yoyaba und AddSales Kosten", "path": "flows/reminder-kosten", "icon": "bell" }
             ]
           }
         ]
@@ -92,7 +92,7 @@
         ]
       },
       {
-        "tab": "Archiv & Betrieb",
+        "tab": "Archiv und Betrieb",
         "icon": "archive",
         "groups": [
           {
@@ -106,8 +106,8 @@
             "group": "Betrieb",
             "icon": "settings",
             "pages": [
-              { "title": "Zugänge & Zuständigkeiten", "path": "betrieb/zugaenge", "icon": "shield" },
-              { "title": "Monitoring & Fehlerfälle", "path": "betrieb/monitoring", "icon": "activity" }
+              { "title": "Zugänge und Zuständigkeiten", "path": "betrieb/zugaenge", "icon": "shield" },
+              { "title": "Monitoring und Fehlerfälle", "path": "betrieb/monitoring", "icon": "activity" }
             ]
           }
         ]

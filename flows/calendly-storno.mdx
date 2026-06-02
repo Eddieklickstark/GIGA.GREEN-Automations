@@ -4,7 +4,7 @@ description: Storniert jemand seinen Calendly-Termin, löscht dieser Flow den da
 ---
 
 <Callout kind="info">
-  **Bereich:** Termine / Calendly · **Status:** Aktiv · **Make-ID:** 5179280
+  **Bereich:** Termine und Calendly · **Status:** Aktiv · **Make-ID:** 5179280
 </Callout>
 
 ## Verwendete Tools
@@ -16,7 +16,7 @@ description: Storniert jemand seinen Calendly-Termin, löscht dieser Flow den da
 Storniert jemand einen AddSales-Termin in **Calendly**, entfernt dieser Flow den **Fehl-Lead**, der durch die Buchung in Zoho entstanden ist, aber nur wenn der Lead **jünger als ein Tag** ist (also wirklich aus dieser Buchung stammt). Das Team erfährt die Stornierung über **Slack**.
 
 <Callout kind="warning">
-  **Dieser Flow löscht Daten in Zoho CRM.** Es werden Leads per `DeleteObject` entfernt. Die Sicherung dagegen ist allein der Altersfilter (jünger als 1 Tag) — greift dieser nicht korrekt, könnte ein bestehender Lead gelöscht werden. Änderungen am Filter mit besonderer Vorsicht vornehmen.
+  **Dieser Flow löscht Daten in Zoho CRM.** Es werden Leads per `DeleteObject` entfernt. Die Sicherung dagegen ist allein der Altersfilter (jünger als 1 Tag), greift dieser nicht korrekt, könnte ein bestehender Lead gelöscht werden. Änderungen am Filter mit besonderer Vorsicht vornehmen.
 </Callout>
 
 ## Ablauf
@@ -35,7 +35,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — Storno-E-Mail empfangen
+- **Auslöser:** Webhook, wenn eine Stornierung per E-Mail eingeht
 - **Häufigkeit:** Sofort bei jeder Stornierung (Echtzeit)
 - **Schreibt nach:** Zoho CRM (Lead löschen), Slack
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/5179280/edit)
@@ -46,7 +46,7 @@ flowchart TD
   <Step title="Storno empfangen">
     Ein Webhook empfängt die **Storno-E-Mail** der Calendly-Buchung und es geht eine **Slack-Meldung** raus.
   </Step>
-  <Step title="Verzögern & Lead suchen">
+  <Step title="Verzögern und Lead suchen">
     Nach einer kurzen **Verzögerung** sucht der Flow den zugehörigen **Lead in Zoho CRM**.
   </Step>
   <Step title="Altersprüfung">

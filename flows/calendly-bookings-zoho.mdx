@@ -1,10 +1,10 @@
 ---
 title: Calendly Bookings → Spreadsheet → Zoho
-description: Bucht jemand einen Termin über Calendly, legt dieser Flow daraus Lead und Meeting in Zoho an, ordnet den passenden Account Executive zu und unterscheidet Neubuchung von Umbuchung.
+description: Bucht jemand einen Termin über Calendly, legt dieser Flow daraus Lead und Meeting in Zoho an, ordnet den passenden Account Executive zu und unterscheidet eine Neubuchung von einer Umbuchung.
 ---
 
 <Callout kind="info">
-  **Bereich:** Termine / Calendly · **Status:** Aktiv · **Make-ID:** 2149316
+  **Bereich:** Termine und Calendly · **Status:** Aktiv · **Make-ID:** 2149316
 </Callout>
 
 ## Verwendete Tools
@@ -13,10 +13,10 @@ description: Bucht jemand einen Termin über Calendly, legt dieser Flow daraus L
 
 ## In a nutshell
 
-Bucht jemand einen Termin über **Calendly**, greift dieser Flow zu: Er schaut auf die Terminart (Info-, Messe-, Folgetermin, Projektanalyse), erkennt ob es eine neue Buchung oder eine Umbuchung ist, ordnet den passenden **Account Executive** zu und legt in **Zoho CRM** Lead und Meeting an oder aktualisiert sie. Jede Buchung landet zusätzlich in einem **Google Sheet**.
+Bucht jemand einen Termin über **Calendly**, greift dieser Flow zu: Er schaut auf die Terminart (Informationstermine, Messetermine, Folgetermine und Projektanalysen), erkennt ob es eine neue Buchung oder eine Umbuchung ist, ordnet den passenden **Account Executive** zu und legt in **Zoho CRM** Lead und Meeting an oder aktualisiert sie. Jede Buchung landet zusätzlich in einem **Google Sheet**.
 
 <Callout kind="warning">
-  Dies ist mit **52 Modulen der größte Termin-Flow**. Das Ablaufdiagramm unten zeigt nur den Hauptpfad und die wichtigsten Verzweigungen — der echte Flow enthält zahlreiche verschachtelte Router, Hilfsschritte zur AE-Zuordnung und Spreadsheet-Pflege. Bei Änderungen immer das Make-Szenario direkt betrachten.
+  Dies ist mit **52 Modulen der größte Termin-Flow**. Das Ablaufdiagramm unten zeigt nur den Hauptpfad und die wichtigsten Verzweigungen, der echte Flow enthält zahlreiche verschachtelte Router, Hilfsschritte zur AE-Zuordnung und Spreadsheet-Pflege. Bei Änderungen immer das Make-Szenario direkt betrachten.
 </Callout>
 
 ## Ablauf
@@ -41,7 +41,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Calendly — neue/geänderte Buchung (watchInvitees)
+- **Auslöser:** Calendly, eine neue oder geänderte Buchung (watchInvitees)
 - **Häufigkeit:** Sofort bei jeder Buchung (Echtzeit)
 - **Schreibt nach:** Zoho CRM (Lead + Meeting), Google Sheets, Slack
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2149316/edit)
@@ -49,25 +49,25 @@ flowchart TD
 ## Im Detail
 
 <Steps>
-  <Step title="Buchung empfangen & Terminart filtern">
+  <Step title="Buchung empfangen und Terminart filtern">
     Calendly meldet eine Buchung. Der Flow lässt nur relevante Terminarten durch: **Informationstermin** (diverse Schreibweisen, inkl. „Info Call", „Infotermin", „Informationstermin Vor-Ort"), **Messetermin**, **Folgetermin** und **Projektanalyse**. Andere Termine werden ignoriert.
   </Step>
   <Step title="Neubuchung vs. Umbuchung">
     Über das Feld `old_invitee` entscheidet der Flow:
     - **fehlt** → es ist eine **Neubuchung**
-    - **vorhanden** → es ist eine **Umbuchung / Terminänderung**
+    - **vorhanden** → es ist eine **Umbuchung oder Terminänderung**
   </Step>
-  <Step title="Neubuchung — Quelle & Protokoll">
+  <Step title="Neubuchung: Quelle und Protokoll">
     Bei einer Neubuchung wird die **Lead Source aus dem Terminnamen** abgeleitet (bei Messeterminen das richtige Event gewählt) und die Buchung in einem **Google Sheet** protokolliert. **Test-Buchungen** (Name enthält „test", E-Mail enthält „test" oder „giga.green") werden nicht gespeichert.
   </Step>
   <Step title="AE zuordnen">
-    Der Flow ermittelt die **Zoho-ID des Account Executive** aus dem Sheet, setzt den `partner@`-User als Fallback und wählt den **richtigen Meeting-Host**.
+    Der Flow ermittelt die **Zoho-ID des Account Executive** aus dem Sheet, setzt den `partner@`-User als Fallback und wählt den **richtigen Host für das Meeting**.
   </Step>
   <Step title="Lead anlegen oder aktualisieren">
-    Existiert der Lead schon, wird er **aktualisiert**. Sonst wird je nach Terminart ein neuer Lead angelegt — unterschieden in **AddSales-Infotermin**, **Messetermin** und **regulären Neukunden-Lead**. Anschließend folgen **Slack-** und **Gmail-Benachrichtigung**.
+    Existiert der Lead schon, wird er **aktualisiert**. Sonst wird je nach Terminart ein neuer Lead angelegt, unterschieden in **AddSales-Infotermin**, **Messetermin** und **regulären Neukunden-Lead**. Anschließend geht eine Benachrichtigung über **Slack** und **Gmail** raus.
   </Step>
   <Step title="Meeting erstellen">
-    Zum Lead wird ein **Meeting in Zoho CRM** angelegt (bei Projektanalyse/Folgetermin wird der zugehörige Lead vorher gesucht).
+    Zum Lead wird ein **Meeting in Zoho CRM** angelegt (bei einer Projektanalyse oder einem Folgetermin wird der zugehörige Lead vorher gesucht).
   </Step>
   <Step title="Umbuchung">
     Bei einer Terminänderung sucht der Flow den **bestehenden Lead und das bestehende Meeting** und **aktualisiert das Meeting** in Zoho, statt etwas Neues anzulegen.
@@ -78,7 +78,7 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Calendly-Buchung: Terminart/Event-Name, Invitee (Name, E-Mail), Event-URI, `old_invitee`, Lead Source aus Terminname | Zoho-Lead (neu oder aktualisiert), Zoho-Meeting, Google-Sheet-Zeile, Slack-Nachricht, Gmail-Benachrichtigung |
+| Calendly-Buchung: Terminart und Event-Name, Invitee (Name, E-Mail), Event-URI, `old_invitee`, Lead Source aus dem Terminnamen | Zoho-Lead (neu oder aktualisiert), Zoho-Meeting, eine Zeile im Google Sheet, Slack-Nachricht, Gmail-Benachrichtigung |
 
 ### Wichtige Regeln
 
@@ -96,6 +96,6 @@ flowchart TD
 | --- | --- | --- |
 | Buchung wird nicht verarbeitet | Terminart entspricht keinem der erlaubten Namen | Schreibweise des Calendly-Event-Namens gegen den Terminart-Filter prüfen |
 | Lead doppelt angelegt | Dublettensuche in Zoho greift nicht oder AE-Zuordnung schlägt fehl | Letzte Ausführung im Make-Szenario prüfen, Zoho-Suche kontrollieren |
-| Falscher oder kein AE als Host | AE-Zoho-ID nicht im Google Sheet gefunden | Sheet mit AE-Zuordnung aktualisieren, `partner@`-Fallback prüfen |
+| Falscher oder kein AE als Host | Zoho-ID des AE nicht im Google Sheet gefunden | Sheet mit der AE-Zuordnung aktualisieren, `partner@`-Fallback prüfen |
 | Umbuchung legt neues Meeting an statt zu aktualisieren | `old_invitee` nicht erkannt oder Meeting nicht gefunden | Calendly-Webhook-Daten und Meeting-Suche in Zoho prüfen |
-| Keine Slack-/Gmail-Meldung | Slack- oder Gmail-Verbindung getrennt | Connection in Make neu autorisieren |
+| Keine Meldung über Slack oder Gmail | Slack- oder Gmail-Verbindung getrennt | Connection in Make neu autorisieren |

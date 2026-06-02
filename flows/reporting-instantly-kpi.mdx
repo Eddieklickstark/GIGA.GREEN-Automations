@@ -1,10 +1,10 @@
 ---
 title: Instantly Kampagnen-KPIs → Google Sheets
-description: Holt die KPIs der Cold-Mail-Kampagnen aus Instantly, fasst sie zusammen und schreibt sie ins Dashboard-Sheet.
+description: Holt die KPIs der Kampagnen aus Instantly, fasst sie zusammen und schreibt sie ins Sheet für das Dashboard.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting / Dashboard · **Status:** Aktiv · **Make-ID:** 2006361
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 2006361
 </Callout>
 
 ## Verwendete Tools
@@ -13,7 +13,7 @@ description: Holt die KPIs der Cold-Mail-Kampagnen aus Instantly, fasst sie zusa
 
 ## In a nutshell
 
-Sammelt die Kennzahlen (KPIs) der **Cold-Mail-Kampagnen aus Instantly**, fasst sie zusammen und schreibt sie als neue Zeile ins **Dashboard-Sheet**. So bleibt das KPI-Reporting aktuell, ohne dass jemand etwas aus Instantly abtippt.
+Sammelt die Kennzahlen (KPIs) der **Kampagnen aus Instantly**, fasst sie zusammen und schreibt sie als neue Zeile in das **Sheet für das Dashboard**. So bleibt das Reporting der KPIs aktuell, ohne dass jemand etwas aus Instantly abtippt.
 
 ## Ablauf
 
@@ -29,16 +29,16 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Instantly — Campaign Summary (Kampagnen-Kennzahlen)
+- **Auslöser:** Campaign Summary aus Instantly mit den Kampagnen-Kennzahlen
 - **Häufigkeit:** Je Ausführung des Szenarios
-- **Schreibt nach:** Google Sheets (KPI-Dashboard-Sheet)
+- **Schreibt nach:** Google Sheets (Sheet für das KPI-Dashboard)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2006361/edit)
 
 ## Im Detail
 
 <Steps>
   <Step title="Kampagnen abrufen">
-    Instantly liefert die **Übersicht der Cold-Mail-Kampagnen** mit ihren Kennzahlen.
+    Instantly liefert die **Übersicht der Kampagnen** mit ihren Kennzahlen.
   </Step>
   <Step title="Pro Kampagne durchlaufen">
     Der Flow iteriert über die Kampagnen und holt je Kampagne **weitere Kennzahlen** aus Instantly.
@@ -50,7 +50,7 @@ flowchart TD
     Die Kennzahlen werden **zusammengefasst** (aggregiert).
   </Step>
   <Step title="Ins Dashboard schreiben">
-    Die aggregierten KPIs werden als **neue Zeile ins Google Sheet** geschrieben.
+    Die aggregierten KPIs werden als **neue Zeile in das Google Sheet** geschrieben.
   </Step>
 </Steps>
 
@@ -58,13 +58,13 @@ flowchart TD
 
 | Rein | Raus |
 | --- | --- |
-| Kampagnen-Kennzahlen aus Instantly (Versand-, Reply- und Performance-Werte) | Aggregierte KPI-Zeile im Google-Sheet (KPI-Dashboard) |
+| Kampagnen-Kennzahlen aus Instantly (Werte zu Versand, Antworten und Performance) | Aggregierte Zeile mit KPIs im Google Sheet (KPI-Dashboard) |
 
 ### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Keine neue KPI-Zeile im Sheet | Instantly-Verbindung abgelaufen oder keine Kampagnendaten zurückgeliefert | Im Make-Szenario die letzte Ausführung prüfen, Instantly-Connection neu autorisieren |
+| Keine neue Zeile mit KPIs im Sheet | Instantly-Verbindung abgelaufen oder keine Kampagnendaten zurückgeliefert | Im Make-Szenario die letzte Ausführung prüfen, Instantly-Connection neu autorisieren |
 | Zahlen wirken unvollständig | Filter im Google-Sheets-Schritt greift zu eng | Filter-Schritt „filterRows" im Szenario kontrollieren |
 | Werte werden nicht zusammengefasst | Aggregations-Schritt erhält keine Eingangsdaten | Iteration über die Kampagnen und die vorgelagerten Instantly-Schritte prüfen |
-| Schreiben ins Sheet schlägt fehl | Google-Sheets-Verbindung getrennt oder Sheet/Tab umbenannt | Google-Sheets-Connection und Zielsheet in Make prüfen |
+| Schreiben in das Sheet schlägt fehl | Google-Sheets-Verbindung getrennt oder Sheet beziehungsweise Tab umbenannt | Google-Sheets-Connection und Zielsheet in Make prüfen |

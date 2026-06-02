@@ -4,7 +4,7 @@ description: Schickt jemand das deutsche Heyflow-Formular ab, legt dieser Flow d
 ---
 
 <Callout kind="info">
-  **Bereich:** Lead-Intake / Webseite · **Status:** Aktiv · **Make-ID:** 1332443
+  **Bereich:** Lead-Intake und Webseite · **Status:** Aktiv · **Make-ID:** 1332443
 </Callout>
 
 ## Verwendete Tools
@@ -34,7 +34,7 @@ flowchart TD
 
 ## Auf einen Blick
 
-- **Auslöser:** Webhook — Formular-Absenden in Heyflow
+- **Auslöser:** Webhook, wenn jemand das Heyflow-Formular abschickt
 - **Häufigkeit:** Sofort bei jeder Anfrage (Echtzeit)
 - **Schreibt nach:** Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1332443/edit)
@@ -43,21 +43,21 @@ flowchart TD
 
 <Steps>
   <Step title="Anfrage empfangen">
-    Heyflow schickt die Formulardaten per Webhook an Make. Die **E-Mail-Adresse wird bereinigt** (Leerzeichen, Groß-/Kleinschreibung).
+    Heyflow schickt die Formulardaten per Webhook an Make. Die **E-Mail-Adresse wird bereinigt**, also Leerzeichen entfernt und die Schreibweise vereinheitlicht.
   </Step>
   <Step title="Dublette prüfen">
     Zoho CRM wird durchsucht, ob mit dieser E-Mail **bereits ein Lead existiert**.
   </Step>
-  <Step title="Neuer Lead — Quelle erkennen">
+  <Step title="Neuer Lead: Quelle erkennen">
     Existiert noch kein Lead, entscheidet der Flow anhand der **UTM-Parameter**:
     - **UTM vorhanden** → Lead-Quelle = bezahlte Kampagne (UTM-Source)
     - **kein UTM** → Lead-Quelle = Organisch
   </Step>
-  <Step title="Anlegen & benachrichtigen">
+  <Step title="Anlegen und benachrichtigen">
     Der Lead wird in Zoho angelegt, das Team bekommt eine **Slack-Meldung**, und der Kontakt wird in **Zoho Campaigns** für den Newsletter eingetragen.
   </Step>
   <Step title="Bestehender Lead">
-    Existiert der Lead schon, wird statt eines Duplikats eine **Aktivität am bestehenden Lead** vermerkt, Slack benachrichtigt und eine **Hinweis-E-Mail** versendet.
+    Existiert der Lead schon, wird statt eines Duplikats eine **Aktivität am bestehenden Lead** vermerkt, Slack benachrichtigt und ein **Hinweis per E-Mail** versendet.
   </Step>
 </Steps>
 
@@ -70,7 +70,7 @@ flowchart TD
 ### Wichtige Regeln
 
 <Callout kind="info">
-  **Test-Anfragen werden gefiltert:** Enthält Vor-, Nachname, Unternehmen oder E-Mail das Wort „test", wird der Kontakt **nicht** in Zoho Campaigns eingetragen.
+  **Testanfragen werden gefiltert:** Enthält Vorname, Nachname, Unternehmen oder E-Mail das Wort „test", wird der Kontakt **nicht** in Zoho Campaigns eingetragen.
 </Callout>
 
 ### Fehlerfälle
@@ -78,6 +78,6 @@ flowchart TD
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
 | Kein Lead in Zoho nach Anfrage | Webhook nicht ausgelöst oder Zoho-Verbindung abgelaufen | Im Make-Szenario die letzte Ausführung prüfen, Zoho-Connection neu autorisieren |
-| Lead doppelt angelegt | Dublettenprüfung greift nicht (z. B. abweichende E-Mail-Schreibweise) | E-Mail-Bereinigung im ersten Schritt prüfen |
+| Lead doppelt angelegt | Dublettenprüfung greift nicht (z. B. abweichende E-Mail-Schreibweise) | Prüfen, ob die E-Mail im ersten Schritt sauber bereinigt wird |
 | Keine Slack-Meldung | Slack-Verbindung getrennt | Slack-Connection in Make neu verbinden |
-| Lead landet nicht im Newsletter | Test-Filter hat gegriffen oder Zoho-Campaigns-Verbindung defekt | Prüfen, ob die Daten „test" enthalten; Verbindung kontrollieren |
+| Lead landet nicht im Newsletter | Testfilter hat gegriffen oder die Verbindung zu Zoho Campaigns ist defekt | Prüfen, ob die Daten „test" enthalten, und die Verbindung kontrollieren |
