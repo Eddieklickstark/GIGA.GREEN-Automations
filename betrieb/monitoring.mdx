@@ -1,0 +1,33 @@
+---
+title: Monitoring & Fehlerfälle
+description: Wie man erkennt, ob die Automationen laufen, und was bei den häufigsten Problemen zu tun ist.
+---
+
+## Wo man den Status sieht
+
+| Wo | Was man sieht |
+| --- | --- |
+| **Make.com → Szenario → History** | Letzte Ausführungen, Erfolg/Fehler je Durchlauf |
+| **Make.com → Szenario → „Incomplete Executions" / DLQ** | Hängengebliebene oder fehlgeschlagene Durchläufe |
+| **Slack** | Viele Flows melden Erfolge (neue Leads, Conversions) direkt ins Team |
+| **„Failed Leads"-Sheets** | Einige Event-Flows protokollieren fehlgeschlagene Datensätze separat im Google Sheet |
+
+## Häufigste Fehlerquellen
+
+<Callout kind="warning">
+  **Abgelaufene Verbindung** ist mit Abstand die häufigste Ursache. Zoho-, Google- oder Slack-Connections müssen gelegentlich in Make neu autorisiert werden — danach laufen die betroffenen Szenarien wieder.
+</Callout>
+
+| Symptom | Wahrscheinliche Ursache | Erste Maßnahme |
+| --- | --- | --- |
+| Lead/Termin landet nicht in Zoho | Zoho-Connection abgelaufen oder Webhook nicht ausgelöst | Letzte Ausführung in Make prüfen, Connection neu autorisieren |
+| Keine Slack-Meldungen mehr | Slack-Connection getrennt | Slack-Verbindung in Make neu verbinden |
+| Daten landen nicht im Sheet/Dashboard | Google-Connection oder Sheet-Struktur verändert | Spalten/Tab-Namen prüfen, Connection kontrollieren |
+| Doppelte Leads | Dublettenprüfung greift nicht (z. B. abweichende E-Mail-Schreibweise) | Bereinigungs-/Such-Schritt im jeweiligen Flow prüfen |
+| Lead fehlt im Newsletter | Test-Filter hat gegriffen oder Zoho-Campaigns-Connection defekt | Auf „test" in den Daten prüfen, Verbindung kontrollieren |
+
+## Eskalation
+
+<Callout kind="info">
+  _(Zu ergänzen.)_ Wer wird bei einem Ausfall informiert, und wie schnell? Sobald das geklärt ist, halten wir hier einen klaren Eskalationsweg fest.
+</Callout>

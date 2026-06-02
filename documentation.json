@@ -18,32 +18,96 @@
             "group": "Übersicht",
             "icon": "compass",
             "pages": [
-              {
-                "title": "Einführung",
-                "path": "introduction",
-                "icon": "home"
-              },
-              {
-                "title": "System-Landkarte",
-                "path": "system-map",
-                "icon": "map"
-              },
-              {
-                "title": "Tool-Inventar",
-                "path": "tool-inventory",
-                "icon": "plug"
-              }
+              { "title": "Einführung", "path": "introduction", "icon": "home" },
+              { "title": "System-Landkarte", "path": "system-map", "icon": "map" },
+              { "title": "Tool-Inventar", "path": "tool-inventory", "icon": "plug" }
             ]
           },
           {
             "group": "Lead-Intake / Webseite",
             "icon": "globe",
             "pages": [
-              {
-                "title": "Heyflow Anfrage (DE) → Zoho",
-                "path": "flows/webseite-heyflow-de",
-                "icon": "form-input"
-              }
+              { "title": "Heyflow Anfrage (DE) → Zoho", "path": "flows/webseite-heyflow-de", "icon": "form-input" },
+              { "title": "Heyflow Anfrage (EN) → Zoho", "path": "flows/webseite-heyflow-en", "icon": "form-input" },
+              { "title": "Standard-Formular Sortierung", "path": "flows/webseite-standard-formular", "icon": "split" },
+              { "title": "Addsales-Formular Anreicherung", "path": "flows/webseite-addsales-anreicherung", "icon": "sparkles" }
+            ]
+          },
+          {
+            "group": "Termine / Calendly",
+            "icon": "calendar",
+            "pages": [
+              { "title": "Calendly Bookings → Zoho", "path": "flows/calendly-bookings-zoho", "icon": "calendar-check" },
+              { "title": "Inbound-Termin → AE + Kalender", "path": "flows/inbound-termin-ae-kalender", "icon": "calendar-plus" },
+              { "title": "Calendly Storno", "path": "flows/calendly-storno", "icon": "calendar-x" },
+              { "title": "No-Show markieren", "path": "flows/calendly-no-show", "icon": "user-x" }
+            ]
+          },
+          {
+            "group": "Events",
+            "icon": "ticket",
+            "pages": [
+              { "title": "Event-Formular Messe", "path": "flows/event-formular-messe", "icon": "tent" },
+              { "title": "Event-Formular → Slack + Notiz", "path": "flows/event-formular-zoho-slack", "icon": "message-square" },
+              { "title": "Event-Antwort (Zu-/Absage)", "path": "flows/event-antwort-verarbeitung", "icon": "check-check" },
+              { "title": "EXPO Real 2025 Landingpage", "path": "flows/expo-real-2025-lp", "icon": "building-2" }
+            ]
+          },
+          {
+            "group": "Reporting / Dashboard",
+            "icon": "chart-line",
+            "pages": [
+              { "title": "Instantly Kampagnen-KPIs", "path": "flows/reporting-instantly-kpi", "icon": "mail-check" },
+              { "title": "Daily Clicks Collection", "path": "flows/reporting-daily-clicks", "icon": "mouse-pointer-click" },
+              { "title": "Looker Studio Dedup", "path": "flows/reporting-looker-dedup", "icon": "copy-x" },
+              { "title": "Zoho API-Key (stündlich)", "path": "flows/reporting-zoho-api-key", "icon": "key-round" },
+              { "title": "AdSpend Archivierung", "path": "flows/reporting-adspend-archiv", "icon": "archive" },
+              { "title": "AddSales Kosten-Verarbeitung", "path": "flows/reporting-addsales-kosten", "icon": "receipt" },
+              { "title": "Zoho User + Events (wöchentlich)", "path": "flows/reporting-zoho-user-events", "icon": "users" },
+              { "title": "Google Ads SQL Conversion-Upload", "path": "flows/reporting-google-ads-conversion", "icon": "upload" }
+            ]
+          },
+          {
+            "group": "Cold-E-Mail & Sonstiges",
+            "icon": "mail",
+            "pages": [
+              { "title": "Cold-Mail negativer Reply → Bernd", "path": "flows/coldmail-negativer-reply", "icon": "reply" },
+              { "title": "Reminder: Yoyaba & AddSales Kosten", "path": "flows/reminder-kosten", "icon": "bell" }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Web-Apps",
+        "icon": "layout-dashboard",
+        "groups": [
+          {
+            "group": "Eigene Anwendungen",
+            "icon": "code",
+            "pages": [
+              { "title": "Marketing-Dashboard", "path": "apps/dashboard", "icon": "chart-pie" },
+              { "title": "Event-App", "path": "apps/event-app", "icon": "ticket" }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Archiv & Betrieb",
+        "icon": "archive",
+        "groups": [
+          {
+            "group": "Archiv",
+            "icon": "archive",
+            "pages": [
+              { "title": "Inaktive Szenarien", "path": "archiv", "icon": "box" }
+            ]
+          },
+          {
+            "group": "Betrieb",
+            "icon": "settings",
+            "pages": [
+              { "title": "Zugänge & Zuständigkeiten", "path": "betrieb/zugaenge", "icon": "shield" },
+              { "title": "Monitoring & Fehlerfälle", "path": "betrieb/monitoring", "icon": "activity" }
             ]
           }
         ]

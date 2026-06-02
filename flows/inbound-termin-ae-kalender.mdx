@@ -1,0 +1,74 @@
+---
+title: Inbound-Termin → AE in Zoho + Google Calendar
+description: Setzt für einen Inbound-Lead den Account Executive als Meeting-Host in Zoho, lädt ihn im Google Calendar zum Termin ein und trägt den Termin in die SQL-Liste ein.
+---
+
+<Callout kind="info">
+  **Bereich:** Termine / Calendly · **Status:** 🟢 Aktiv · **Make-ID:** 4680166
+</Callout>
+
+## Zweck
+
+Wenn für einen **Inbound-Lead** ein Infotermin gebucht ist, sorgt dieser Flow dafür, dass der zuständige **Account Executive (AE)** korrekt am Termin hängt: Er wird in Zoho CRM als **Meeting-Host** gesetzt und im **Google Calendar** zum Termin eingeladen. Zusätzlich wird der Termin in die **SQL-Liste** (Google Sheet) eingetragen.
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — AE- und Lead-Daten vom Zoho Inbound Lead |
+| **Häufigkeit** | Sofort bei eingehendem Inbound-Termin (Echtzeit) |
+| **Verknüpfte Tools** | Zoho CRM, Google Calendar, Google Sheets |
+| **Schreibt nach** | Zoho CRM (Meeting-Host), Google Calendar (Einladung), Google Sheets (SQL-Liste) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4680166/edit) |
+
+## Ablauf
+
+```mermaid
+flowchart TD
+  A[Webhook: AE- + Lead-Daten] --> B[Zoho: Infotermin<br/>des Inbound-Leads suchen]
+  B --> C[Google Calendar:<br/>Termin finden]
+  C --> D{Termin<br/>vorhanden?}
+  D -->|Ja| E[In SQL-Liste eintragen]
+  E --> F[Google Calendar:<br/>AE einladen]
+  F --> G[Zoho: AE als<br/>Meeting-Host setzen]
+  D -->|Nein| Z[Ende]
+```
+
+<Steps>
+  <Step title="Daten empfangen">
+    Ein Webhook liefert die **AE- und Lead-Daten** des Zoho Inbound Leads.
+  </Step>
+  <Step title="Termin in Zoho suchen">
+    Der Flow sucht in Zoho CRM den **Infotermin des Inbound-Leads**.
+  </Step>
+  <Step title="Termin im Kalender finden">
+    Anschließend wird der zugehörige **Termin im Google Calendar** gesucht.
+  </Step>
+  <Step title="In SQL-Liste eintragen">
+    Ist der Kalendertermin vorhanden, wird er in die **SQL-Liste** (Google Sheet) eingetragen.
+  </Step>
+  <Step title="AE einladen & als Host setzen">
+    Der **AE wird im Google Calendar zum Termin eingeladen** und in Zoho CRM als **Meeting-Host (Infotermin)** festgelegt.
+  </Step>
+</Steps>
+
+## Daten
+
+| Rein | Raus |
+| --- | --- |
+| AE- und Lead-Daten des Zoho Inbound Leads (per Webhook) | Zoho-Meeting mit AE als Host, Google-Calendar-Einladung an den AE, Zeile in der SQL-Liste |
+
+## Wichtige Regeln
+
+<Callout kind="info">
+  **Nur bei vorhandenem Kalendertermin:** Die SQL-Listen-Zeile wird nur geschrieben, wenn im Google Calendar ein passender Termin gefunden wurde.
+</Callout>
+
+## Fehlerfälle
+
+| Symptom | Mögliche Ursache | Erste Maßnahme |
+| --- | --- | --- |
+| AE nicht als Host gesetzt | Infotermin in Zoho nicht gefunden | Webhook-Daten und Zoho-Suche prüfen |
+| Keine Kalender-Einladung | Termin im Google Calendar nicht gefunden | Calendar-Suche und Zeitfenster kontrollieren |
+| Kein Eintrag in SQL-Liste | Kalendertermin fehlte (Filter greift) | Prüfen, ob der Google-Calendar-Termin existiert |
+| Zoho-/Calendar-Verbindung abgelaufen | Connection getrennt | Verbindungen in Make neu autorisieren |
