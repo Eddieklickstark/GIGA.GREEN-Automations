@@ -1,6 +1,6 @@
 ---
 title: Event-Formular Messe
-description: Verarbeitet Event-Lead-Formulare von der Messe-WebApp (Replit) — legt Kontakt, Account, Opportunity oder Lead in Zoho an oder aktualisiert sie, ergänzt Notizen, plant Follow-up-Aufgaben, protokolliert Fehler und meldet das Ergebnis zurück an die WebApp.
+description: Kommt ein Lead über das Messe-Formular (Replit) rein, legt dieser Flow Kontakt, Account, Opportunity oder Lead in Zoho an oder aktualisiert sie, plant Follow-up-Aufgaben und meldet das Ergebnis an die WebApp zurück.
 ---
 
 <Callout kind="info">
@@ -13,7 +13,7 @@ description: Verarbeitet Event-Lead-Formulare von der Messe-WebApp (Replit) — 
 
 ## In a nutshell
 
-Dieser Flow ist die zentrale Schnittstelle zwischen dem **Event-Formular auf der Messe-WebApp (Replit)** und Zoho CRM. Er entscheidet, ob zu einem Messe-Lead bereits ein Kontakt, Account, eine Opportunity oder ein Lead in Zoho existiert, und legt diese an oder aktualisiert sie entsprechend. Zusätzlich plant er Follow-up-Aufgaben, protokolliert fehlgeschlagene Datensätze und schickt eine Antwort an die WebApp zurück.
+Dieser Flow verbindet das **Messe-Formular (Replit)** mit **Zoho CRM**. Er schaut, ob es zum Messe-Lead schon einen Kontakt, Account, eine Opportunity oder einen Lead gibt, und legt sie an oder aktualisiert sie. Dazu plant er Follow-up-Aufgaben, protokolliert fehlgeschlagene Datensätze und schickt eine Antwort an die WebApp zurück.
 
 <Callout kind="warning">
   **Größter und komplexester Flow im Event-System (64 Module).** Das Diagramm unten ist bewusst stark vereinfacht und zeigt nur die beiden Hauptpfade. Vor Änderungen immer das Make-Szenario direkt prüfen — die Verzweigungslogik (verschachtelte Router, Failed-Logging je Zweig) ist im Detail deutlich umfangreicher.

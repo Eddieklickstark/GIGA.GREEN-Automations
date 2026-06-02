@@ -1,6 +1,6 @@
 ---
 title: Event-Formular → Slack-Nachricht & Notiz
-description: Verarbeitet Event-Formular-Daten aus Zoho — setzt den Lead-Owner anhand einer Owner-Liste, dokumentiert die Conversion per Notiz und Slack-Meldung und pflegt die Looker-Kosten-Liste.
+description: Landet ein Event-Formular in Zoho, setzt dieser Flow den richtigen Lead-Owner, hält die Conversion per Notiz und Slack-Meldung fest und pflegt die Looker-Kosten-Liste.
 ---
 
 <Callout kind="info">
@@ -13,7 +13,7 @@ description: Verarbeitet Event-Formular-Daten aus Zoho — setzt den Lead-Owner 
 
 ## In a nutshell
 
-Wenn über das **Event-Formular** ein Datensatz in Zoho landet, ordnet dieser Flow den Lead dem **richtigen Owner** zu, dokumentiert die Conversion (Notiz im Spreadsheet, **Slack-Meldung** im Conversion-Chat, Benachrichtigungs-E-Mail) und ergänzt das Event bei Bedarf in der **Looker-Kosten-Liste**. Da der zugehörige Lead nach dem Formular-Eingang nicht sofort in Zoho verfügbar ist, sucht der Flow ihn in mehreren Anläufen.
+Landet über das **Event-Formular** ein Datensatz in Zoho, ordnet dieser Flow den Lead dem **richtigen Owner** zu, hält die Conversion fest (Notiz im Spreadsheet, **Slack**-Meldung im Conversion-Chat, Benachrichtigungs-E-Mail) und ergänzt das Event bei Bedarf in der **Looker-Kosten-Liste**. Direkt nach dem Eingang ist der Lead oft noch nicht in Zoho, deshalb sucht ihn der Flow in mehreren Anläufen.
 
 ## Ablauf
 

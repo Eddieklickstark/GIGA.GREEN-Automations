@@ -1,6 +1,6 @@
 ---
 title: Calendly Bookings → Spreadsheet → Zoho
-description: Verarbeitet neue Calendly-Buchungen, filtert relevante Terminarten, unterscheidet Neubuchung von Umbuchung, ordnet den Account Executive zu und legt Lead und Meeting in Zoho CRM an oder aktualisiert sie.
+description: Bucht jemand einen Termin über Calendly, legt dieser Flow daraus Lead und Meeting in Zoho an, ordnet den passenden Account Executive zu und unterscheidet Neubuchung von Umbuchung.
 ---
 
 <Callout kind="info">
@@ -13,7 +13,7 @@ description: Verarbeitet neue Calendly-Buchungen, filtert relevante Terminarten,
 
 ## In a nutshell
 
-Jede neue **Calendly-Buchung** wird automatisch verarbeitet: Der Flow filtert auf relevante Terminarten (Info-, Messe-, Folgetermin, Projektanalyse), unterscheidet zwischen **Neubuchung und Umbuchung**, ordnet den passenden **Account Executive (AE)** zu und legt in Zoho CRM einen Lead sowie ein Meeting an oder aktualisiert bestehende Einträge. Buchungen werden zusätzlich in einem Google Sheet protokolliert.
+Bucht jemand einen Termin über **Calendly**, greift dieser Flow zu: Er schaut auf die Terminart (Info-, Messe-, Folgetermin, Projektanalyse), erkennt ob es eine neue Buchung oder eine Umbuchung ist, ordnet den passenden **Account Executive** zu und legt in **Zoho CRM** Lead und Meeting an oder aktualisiert sie. Jede Buchung landet zusätzlich in einem **Google Sheet**.
 
 <Callout kind="warning">
   Dies ist mit **52 Modulen der größte Termin-Flow**. Das Ablaufdiagramm unten zeigt nur den Hauptpfad und die wichtigsten Verzweigungen — der echte Flow enthält zahlreiche verschachtelte Router, Hilfsschritte zur AE-Zuordnung und Spreadsheet-Pflege. Bei Änderungen immer das Make-Szenario direkt betrachten.

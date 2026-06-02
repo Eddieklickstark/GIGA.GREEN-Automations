@@ -1,6 +1,6 @@
 ---
 title: Addsales Calendly Storno → Lead entfernen
-description: Löscht bei einer Calendly-Stornierung einen frisch angelegten Fehl-Lead (jünger als ein Tag) in Zoho CRM und informiert das Team in Slack.
+description: Storniert jemand seinen Calendly-Termin, löscht dieser Flow den dadurch frisch entstandenen Fehl-Lead in Zoho (nur wenn er jünger als ein Tag ist) und meldet das in Slack.
 ---
 
 <Callout kind="info">
@@ -13,7 +13,7 @@ description: Löscht bei einer Calendly-Stornierung einen frisch angelegten Fehl
 
 ## In a nutshell
 
-Wird ein AddSales-Termin über Calendly **storniert**, entfernt dieser Flow den dadurch fälschlich angelegten **Fehl-Lead** in Zoho CRM — aber nur, wenn der Lead **jünger als ein Tag** ist (also durch genau diese Buchung entstanden). Das Team wird per **Slack** über die Conversion-Stornierung informiert.
+Storniert jemand einen AddSales-Termin in **Calendly**, entfernt dieser Flow den **Fehl-Lead**, der durch die Buchung in Zoho entstanden ist, aber nur wenn der Lead **jünger als ein Tag** ist (also wirklich aus dieser Buchung stammt). Das Team erfährt die Stornierung über **Slack**.
 
 <Callout kind="warning">
   **Dieser Flow löscht Daten in Zoho CRM.** Es werden Leads per `DeleteObject` entfernt. Die Sicherung dagegen ist allein der Altersfilter (jünger als 1 Tag) — greift dieser nicht korrekt, könnte ein bestehender Lead gelöscht werden. Änderungen am Filter mit besonderer Vorsicht vornehmen.
