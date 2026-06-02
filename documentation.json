@@ -11,106 +11,40 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
-        "icon": "book",
+        "tab": "Automations",
+        "icon": "workflow",
         "groups": [
           {
-            "group": "Getting Started",
-            "icon": "rocket",
+            "group": "Übersicht",
+            "icon": "compass",
             "pages": [
               {
-                "title": "Introduction",
+                "title": "Einführung",
                 "path": "introduction",
                 "icon": "home"
               },
               {
-                "title": "Quickstart",
-                "path": "quickstart",
-                "icon": "zap"
-              }
-            ]
-          },
-          {
-            "group": "Core Concepts",
-            "icon": "layers",
-            "pages": [
-              {
-                "title": "Features",
-                "path": "features",
-                "icon": "star"
+                "title": "System-Landkarte",
+                "path": "system-map",
+                "icon": "map"
               },
               {
-                "title": "Integrations",
-                "path": "integrations",
+                "title": "Tool-Inventar",
+                "path": "tool-inventory",
                 "icon": "plug"
               }
             ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "icon": "code",
-        "groups": [
-          {
-            "group": "Endpoints",
-            "openapi": "api-reference/openapi.yaml",
-            "pages": []
-          }
-        ]
-      },
-      {
-        "tab": "Help Center",
-        "icon": "help-circle",
-        "pages": [
-          {
-            "title": "Help Center",
-            "path": "help-center",
-            "icon": "home"
           },
           {
-            "group": "FAQs",
-            "icon": "help-circle",
-            "expandable": false,
+            "group": "Lead-Intake / Webseite",
+            "icon": "globe",
             "pages": [
               {
-                "title": "How to Activate Automation",
-                "path": "help-center/faq/how-to-activate-automation"
+                "title": "Heyflow Anfrage (DE) → Zoho",
+                "path": "flows/webseite-heyflow-de",
+                "icon": "form-input"
               }
             ]
-          },
-          {
-            "group": "Troubleshooting",
-            "icon": "alert-triangle",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Automation Not Triggering",
-                "path": "help-center/troubleshooting/automation-not-triggering"
-              }
-            ]
-          },
-          {
-            "group": "Guides",
-            "icon": "book-open",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Create Energy Alert",
-                "path": "help-center/guides/create-energy-alert"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Changelog",
-        "icon": "clock",
-        "pages": [
-          {
-            "title": "Release History",
-            "path": "changelog",
-            "icon": "history"
           }
         ]
       }
