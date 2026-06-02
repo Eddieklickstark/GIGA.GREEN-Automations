@@ -7,23 +7,17 @@ description: Verarbeitet neue Calendly-Buchungen, filtert relevante Terminarten,
   **Bereich:** Termine / Calendly · **Status:** 🟢 Aktiv · **Make-ID:** 2149316
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Calendly` `Google Sheets` `Zoho CRM` `Slack` `Gmail`
+
+## In a nutshell
 
 Jede neue **Calendly-Buchung** wird automatisch verarbeitet: Der Flow filtert auf relevante Terminarten (Info-, Messe-, Folgetermin, Projektanalyse), unterscheidet zwischen **Neubuchung und Umbuchung**, ordnet den passenden **Account Executive (AE)** zu und legt in Zoho CRM einen Lead sowie ein Meeting an oder aktualisiert bestehende Einträge. Buchungen werden zusätzlich in einem Google Sheet protokolliert.
 
 <Callout kind="warning">
   Dies ist mit **52 Modulen der größte Termin-Flow**. Das Ablaufdiagramm unten zeigt nur den Hauptpfad und die wichtigsten Verzweigungen — der echte Flow enthält zahlreiche verschachtelte Router, Hilfsschritte zur AE-Zuordnung und Spreadsheet-Pflege. Bei Änderungen immer das Make-Szenario direkt betrachten.
 </Callout>
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Calendly — neue/geänderte Buchung (watchInvitees) |
-| **Häufigkeit** | Sofort bei jeder Buchung (Echtzeit) |
-| **Verknüpfte Tools** | Calendly, Google Sheets, Zoho CRM, Slack, Gmail |
-| **Schreibt nach** | Zoho CRM (Lead + Meeting), Google Sheets, Slack |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2149316/edit) |
 
 ## Ablauf
 
@@ -44,6 +38,17 @@ flowchart TD
   C -->|Umbuchung| L[Lead + Meeting finden]
   L --> M[Meeting in Zoho updaten]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Calendly — neue/geänderte Buchung (watchInvitees) |
+| **Häufigkeit** | Sofort bei jeder Buchung (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead + Meeting), Google Sheets, Slack |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2149316/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Buchung empfangen & Terminart filtern">
@@ -71,13 +76,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Calendly-Buchung: Terminart/Event-Name, Invitee (Name, E-Mail), Event-URI, `old_invitee`, Lead Source aus Terminname | Zoho-Lead (neu oder aktualisiert), Zoho-Meeting, Google-Sheet-Zeile, Slack-Nachricht, Gmail-Benachrichtigung |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Nur bestimmte Terminarten:** Verarbeitet werden ausschließlich Informationstermine (alle Schreibvarianten), Messetermine, Folgetermine und Projektanalysen. Alle anderen Calendly-Buchungen werden verworfen.
@@ -87,7 +92,7 @@ flowchart TD
   **Test-Buchungen werden nicht gespeichert:** Enthält der Name „test" oder die E-Mail „test" bzw. „giga.green", wird die Buchung nicht ins Google Sheet geschrieben.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

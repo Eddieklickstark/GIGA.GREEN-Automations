@@ -7,19 +7,13 @@ description: Verarbeitet Anfragen aus dem Addsales-Formular, legt passende Zoho-
   **Bereich:** Lead-Intake / Webseite · **Status:** 🟢 Aktiv · **Make-ID:** 3534404
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Google Sheets` `HTTP`
+
+## In a nutshell
 
 Anfragen aus dem **Addsales-Formular** werden automatisch in Zoho CRM überführt: Der Flow legt entweder einen **neuen Lead an oder aktualisiert einen bestehenden**, reichert die Daten an und **korrigiert dabei falsch genutzte Calendly-Links** über einen Abgleich in Google Sheets.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Addsales-Formular |
-| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Google Sheets, HTTP |
-| **Schreibt nach** | Zoho CRM (Lead, mit Anreicherung) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/3534404/edit) |
 
 ## Ablauf
 
@@ -39,6 +33,17 @@ flowchart TD
   K -->|Ja| M[Lead aktualisieren + Calendly-Korrektur]
 ```
 
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Addsales-Formular |
+| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead, mit Anreicherung) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/3534404/edit) |
+
+## Im Detail
+
 <Steps>
   <Step title="Anfrage empfangen & Testdaten filtern">
     Der Webhook empfängt die Addsales-Formulardaten. Es geht nur weiter, wenn **Firma oder Nachname vorhanden** sind — leere Testaufrufe werden abgefangen.
@@ -57,13 +62,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Firma, Nachname, weitere Addsales-Formularfelder, Lead-Source | Zoho-Lead (neu oder aktualisiert, mit Anreicherung und korrigiertem Calendly-Link) |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Testdaten werden gefiltert:** Der Flow läuft nur weiter, wenn **Firma oder Nachname** im Webhook vorhanden sind. Leere Aufrufe ohne diese Felder werden gestoppt.
@@ -73,7 +78,7 @@ flowchart TD
   **Calendly-Link-Korrektur:** Liegt die Lead-Source **nicht** auf „Outbound Call", gilt der genutzte Calendly-Link als potenziell falsch. Über einen Google-Sheets-Abgleich wird die richtige Zuordnung ermittelt und der Lead korrigiert.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

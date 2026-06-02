@@ -7,19 +7,13 @@ description: Leitet eine (negative) Antwort aus einer Instantly-Cold-Mail-Kampag
   **Bereich:** Cold-E-Mail & Sonstiges · **Status:** 🟢 Aktiv · **Make-ID:** 1995270
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Instantly` `E-Mail (IMAP/SMTP)` `Google Sheets`
+
+## In a nutshell
 
 Antwortet ein Empfänger auf eine **Cold-Mail-Kampagne in Instantly**, meldet Instantly das per Webhook an Make. Der Flow leitet die Antwort **per E-Mail an Bernd** weiter, damit sie nicht untergeht, und schreibt sie zur Nachverfolgung in **zwei Google-Sheets-Logs**.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Reply-Ereignis aus Instantly |
-| **Häufigkeit** | Sofort bei jeder eingehenden Antwort (Echtzeit) |
-| **Verknüpfte Tools** | Instantly, E-Mail (IMAP/SMTP), Google Sheets |
-| **Schreibt nach** | E-Mail an Bernd, Google Sheets (zwei Log-Einträge) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1995270/edit) |
 
 ## Ablauf
 
@@ -30,6 +24,17 @@ flowchart TD
   C --> D[Eintrag in Google Sheets — Log 1]
   D --> E[Eintrag in Google Sheets — Log 2]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Reply-Ereignis aus Instantly |
+| **Häufigkeit** | Sofort bei jeder eingehenden Antwort (Echtzeit) |
+| **Schreibt nach** | E-Mail an Bernd, Google Sheets (zwei Log-Einträge) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1995270/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Antwort empfangen">
@@ -46,13 +51,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Reply-Daten aus Instantly (Absender, Nachricht, Kampagne) | Weiterleitungs-E-Mail an Bernd, zwei Google-Sheets-Log-Einträge |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

@@ -7,19 +7,13 @@ description: Versendet eine wiederkehrende Erinnerungs-E-Mail an Josh, damit die
   **Bereich:** Cold-E-Mail & Sonstiges · **Status:** 🟢 Aktiv · **Make-ID:** 4867273
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Gmail`
+
+## In a nutshell
 
 Ein minimaler Ein-Modul-Flow, der **Josh per E-Mail erinnert**, die **Yoyaba- und AddSales-Kosten** einzutragen. So bleibt die Kostenpflege im Reporting aktuell, ohne dass jemand daran denken muss.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Gmail-Versand-Modul (sendet die Erinnerungs-E-Mail) |
-| **Häufigkeit** | Wiederkehrend, vermutlich per Zeitplan — zu bestätigen |
-| **Verknüpfte Tools** | Gmail |
-| **Schreibt nach** | E-Mail an Josh |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4867273/edit) |
 
 ## Ablauf
 
@@ -28,19 +22,30 @@ flowchart TD
   A[Auslösung des Szenarios] --> B[Erinnerungs-E-Mail an Josh senden]
 ```
 
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Gmail-Versand-Modul (sendet die Erinnerungs-E-Mail) |
+| **Häufigkeit** | Wiederkehrend, vermutlich per Zeitplan — zu bestätigen |
+| **Schreibt nach** | E-Mail an Josh |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4867273/edit) |
+
+## Im Detail
+
 <Steps>
   <Step title="Erinnerung versenden">
     Das **Gmail-Modul** verschickt eine Erinnerungs-E-Mail an Josh mit dem Hinweis, die **Yoyaba- und AddSales-Kosten** einzutragen.
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Keine externen Eingangsdaten (Szenario löst sich selbst aus) | Erinnerungs-E-Mail an Josh |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

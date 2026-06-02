@@ -7,19 +7,13 @@ description: Überwacht neue Leads im Looker-Studio-Sheet, prüft auf Dubletten 
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 4317229
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Google Sheets`
+
+## In a nutshell
 
 Überwacht **neue Leads im Looker-Studio-Sheet**, prüft sie gegen den **Bestand auf Dubletten** und filtert **Testleads** heraus. Nur echte, noch nicht vorhandene Leads landen in der bereinigten Liste, auf der das Looker-Studio-Reporting aufsetzt.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Google Sheets — neue Zeilen im Lead-Sheet (watchRows) |
-| **Häufigkeit** | Bei neuen Leads im überwachten Sheet |
-| **Verknüpfte Tools** | Google Sheets |
-| **Schreibt nach** | Google Sheets (bereinigte Lead-Liste) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4317229/edit) |
 
 ## Ablauf
 
@@ -31,6 +25,17 @@ flowchart TD
   C -->|Ja| Y[Verwerfen]
   C -->|Nein| D[Google Sheets: in bereinigte Liste schreiben]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Google Sheets — neue Zeilen im Lead-Sheet (watchRows) |
+| **Häufigkeit** | Bei neuen Leads im überwachten Sheet |
+| **Schreibt nach** | Google Sheets (bereinigte Lead-Liste) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4317229/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Neue Leads suchen">
@@ -44,19 +49,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Neue Lead-Zeilen aus dem überwachten Google-Sheet | Bereinigte, dublettenfreie Lead-Zeile (ohne Testleads) im Ziel-Sheet |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Testleads werden gefiltert:** Enthält der Lead das Wort „test", wird er **nicht** in die bereinigte Liste übernommen. Zusätzlich werden Leads ausgeschlossen, die **bereits in der Liste** vorhanden sind.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

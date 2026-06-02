@@ -7,19 +7,13 @@ description: Liest täglich das aktuelle Supermetrics-Ad-Spend-Sheet und schreib
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 4455501
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Google Sheets`
+
+## In a nutshell
 
 Das Supermetrics-Sheet enthält immer nur die **aktuellen Ad-Spend-Werte** und wird laufend überschrieben. Dieser kleine Flow liest diese Werte aus und hängt sie an ein **Archiv-Sheet** an. So entsteht ein dauerhafter Verlauf der täglichen Werbeausgaben als Datenbasis für Reporting und Dashboards.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Google Sheets — Inhalt des aktuellen Ad-Spend-Sheets wird gelesen |
-| **Häufigkeit** | Täglich |
-| **Verknüpfte Tools** | Google Sheets |
-| **Schreibt nach** | Google Sheets (Archiv-Sheet) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4455501/edit) |
 
 ## Ablauf
 
@@ -27,6 +21,17 @@ Das Supermetrics-Sheet enthält immer nur die **aktuellen Ad-Spend-Werte** und w
 flowchart TD
   A[Aktuelles Supermetrics-Sheet lesen] --> B[Werte ins Archiv-Sheet schreiben]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Google Sheets — Inhalt des aktuellen Ad-Spend-Sheets wird gelesen |
+| **Häufigkeit** | Täglich |
+| **Schreibt nach** | Google Sheets (Archiv-Sheet) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4455501/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Aktuelles Sheet lesen">
@@ -37,13 +42,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Aktuelle Ad-Spend-Werte aus dem Supermetrics-Sheet | Neue Zeile im Archiv-Sheet |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

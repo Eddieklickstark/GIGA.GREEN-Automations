@@ -7,19 +7,13 @@ description: Wandelt eine englischsprachige Webseiten-Anfrage aus Heyflow in ein
   **Bereich:** Lead-Intake / Webseite · **Status:** 🟢 Aktiv · **Make-ID:** 1593986
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Slack` `Zoho Campaigns` `HTTP (E-Mail-Validierung)` `E-Mail`
+
+## In a nutshell
 
 Jede neue **englischsprachige Anfrage** über das Heyflow-Formular auf der Webseite wird automatisch zu einem Lead in Zoho CRM. Der Flow prüft vorher, ob der Lead schon existiert, **validiert die E-Mail-Adresse per HTTP-Dienst**, erkennt die Lead-Quelle (bezahlte Kampagne vs. organisch) und benachrichtigt das Team in Slack.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Formular-Absenden in Heyflow (EN) |
-| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Slack, Zoho Campaigns, HTTP (E-Mail-Validierung), E-Mail |
-| **Schreibt nach** | Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1593986/edit) |
 
 ## Ablauf
 
@@ -39,6 +33,17 @@ flowchart TD
   K --> L[Slack-Benachrichtigung]
   L --> M[Benachrichtigungs-E-Mail]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Formular-Absenden in Heyflow (EN) |
+| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1593986/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Anfrage empfangen">
@@ -63,19 +68,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Vorname, Nachname, E-Mail, Unternehmen, Nachricht, UTM-Parameter | Zoho-Lead (mit Quelle), Newsletter-Kontakt, Slack-Nachricht |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **E-Mail-Validierung vor Lead-Anlage:** Neue Leads werden erst angelegt, wenn die E-Mail-Prüfung per HTTP einen Status **ungleich „invalid"** zurückgibt. Adressen, die als invalid erkannt werden, werden nicht in Zoho geschrieben.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

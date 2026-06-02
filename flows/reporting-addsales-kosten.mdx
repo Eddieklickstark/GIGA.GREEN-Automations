@@ -7,19 +7,13 @@ description: Empfängt AddSales-Rechnungen per Mail-Hook und lädt die angehäng
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 8895203
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`E-Mail (Mail-Hook)` `HTTP`
+
+## In a nutshell
 
 AddSales schickt **Rechnungen per E-Mail**. Dieser Flow fängt diese Mails über einen Mail-Hook ab und **lädt die enthaltene Rechnungsdatei automatisch herunter** — als Grundlage für die weitere Kostenerfassung im Reporting.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Mail-Hook — eingehende Rechnungs-E-Mail von AddSales |
-| **Häufigkeit** | Sofort bei jeder eingehenden Rechnungs-Mail (Echtzeit) |
-| **Verknüpfte Tools** | E-Mail (Mail-Hook), HTTP |
-| **Schreibt nach** | Datei-Download (Rechnungsdatei) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/8895203/edit) |
 
 ## Ablauf
 
@@ -27,6 +21,17 @@ AddSales schickt **Rechnungen per E-Mail**. Dieser Flow fängt diese Mails über
 flowchart TD
   A[Rechnungs-Mail von AddSales empfangen] --> B[Rechnungsdatei per HTTP herunterladen]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Mail-Hook — eingehende Rechnungs-E-Mail von AddSales |
+| **Häufigkeit** | Sofort bei jeder eingehenden Rechnungs-Mail (Echtzeit) |
+| **Schreibt nach** | Datei-Download (Rechnungsdatei) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/8895203/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Rechnungs-Mail empfangen">
@@ -37,13 +42,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Eingehende AddSales-Rechnungs-Mail (Datei-Link) | Heruntergeladene Rechnungsdatei |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

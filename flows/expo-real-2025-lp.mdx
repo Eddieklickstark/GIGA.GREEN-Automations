@@ -7,19 +7,13 @@ description: Verarbeitet Anmeldungen über die EXPO Real 2025 Landingpage — le
   **Bereich:** Events · **Status:** 🟢 Aktiv · **Make-ID:** 6501797
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Slack` `Gmail`
+
+## In a nutshell
 
 Jede Anmeldung über das Formular der **EXPO Real 2025 Landingpage** wird automatisch verarbeitet: Der Flow legt in Zoho ein **Event** an, postet eine **Slack-Meldung** und versendet eine **Bestätigungs-E-Mail** an den Interessenten. Zur korrekten Zuordnung wird zuvor der passende Lead in Zoho gesucht.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Formular der EXPO Real 2025 Landingpage |
-| **Häufigkeit** | Sofort bei jeder Anmeldung (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Slack, Gmail |
-| **Schreibt nach** | Zoho CRM (Event), Slack, Gmail (Bestätigungs-E-Mail) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6501797/edit) |
 
 ## Ablauf
 
@@ -34,6 +28,17 @@ flowchart TD
   G --> H[Bestätigungs-E-Mail<br/>via Gmail]
   E -->|Nein| I[Bestätigungs-E-Mail<br/>via Gmail]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Formular der EXPO Real 2025 Landingpage |
+| **Häufigkeit** | Sofort bei jeder Anmeldung (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Event), Slack, Gmail (Bestätigungs-E-Mail) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6501797/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Anmeldung empfangen">
@@ -50,13 +55,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Anmeldedaten vom EXPO-Real-2025-Landingpage-Formular, Eventzeit | Zoho-Event, Slack-Meldung, Bestätigungs-E-Mail (Gmail) |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

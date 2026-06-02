@@ -7,19 +7,13 @@ description: Verarbeitet Event-Formular-Daten aus Zoho — setzt den Lead-Owner 
   **Bereich:** Events · **Status:** 🟢 Aktiv · **Make-ID:** 5178434
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Google Sheets` `Slack` `E-Mail`
+
+## In a nutshell
 
 Wenn über das **Event-Formular** ein Datensatz in Zoho landet, ordnet dieser Flow den Lead dem **richtigen Owner** zu, dokumentiert die Conversion (Notiz im Spreadsheet, **Slack-Meldung** im Conversion-Chat, Benachrichtigungs-E-Mail) und ergänzt das Event bei Bedarf in der **Looker-Kosten-Liste**. Da der zugehörige Lead nach dem Formular-Eingang nicht sofort in Zoho verfügbar ist, sucht der Flow ihn in mehreren Anläufen.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Formulardaten vom Event-Formular (aus Zoho) |
-| **Häufigkeit** | Sofort bei jeder Übermittlung (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Google Sheets, Slack, E-Mail |
-| **Schreibt nach** | Zoho CRM (Lead-Owner), Google Sheets (Leads-Liste + Looker-Kosten-Liste), Slack, E-Mail |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/5178434/edit) |
 
 ## Ablauf
 
@@ -40,6 +34,17 @@ flowchart TD
   J -->|Nein| K[Event in Looker-<br/>Kosten-Liste eintragen]
 ```
 
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Formulardaten vom Event-Formular (aus Zoho) |
+| **Häufigkeit** | Sofort bei jeder Übermittlung (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead-Owner), Google Sheets (Leads-Liste + Looker-Kosten-Liste), Slack, E-Mail |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/5178434/edit) |
+
+## Im Detail
+
 <Steps>
   <Step title="Formulardaten empfangen">
     Die Event-Formular-Daten kommen per Webhook an. Eine kurze **Verzögerung** stellt sicher, dass Zoho den zugehörigen Lead bereits verarbeiten konnte.
@@ -58,13 +63,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Formulardaten vom Event-Formular (Name, Nachricht, Event u. a.) | Zoho-Lead mit gesetztem Owner, Eintrag in Leads-Liste (Sheet), Eintrag in Looker-Kosten-Liste (Sheet), Slack-Conversion-Meldung, Benachrichtigungs-E-Mail |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Mehrstufiger Retry:** Da der Lead nach dem Formular-Eingang nicht sofort in Zoho verfügbar ist, sucht der Flow ihn über mehrere Stufen mit zwischengeschalteter Verzögerung. Erst wenn der Lead gefunden wurde, werden Owner, Notiz und Slack-Meldung verarbeitet.
@@ -74,7 +79,7 @@ flowchart TD
   **Looker-Kosten-Liste nur einmal pro Event:** Das Event wird nur dann ergänzt, wenn es noch nicht in der Liste steht — Dubletten werden so vermieden.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

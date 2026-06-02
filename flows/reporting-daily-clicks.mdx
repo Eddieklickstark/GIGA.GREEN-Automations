@@ -7,19 +7,13 @@ description: Nimmt tägliche Klickdaten per Webhook entgegen, bereitet sie auf u
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 2082018
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Google Sheets`
+
+## In a nutshell
 
 Nimmt **tägliche Klickdaten per Webhook** entgegen und schreibt sie als neue Zeile ins **Reporting-Sheet**. Ein schlanker Flow, der die Klickwerte fürs Dashboard sammelt.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — eingehende Klickdaten |
-| **Häufigkeit** | Täglich (bei jedem Webhook-Aufruf) |
-| **Verknüpfte Tools** | Google Sheets |
-| **Schreibt nach** | Google Sheets (Reporting-Sheet) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2082018/edit) |
 
 ## Ablauf
 
@@ -28,6 +22,17 @@ flowchart TD
   A[Webhook: Klickdaten empfangen] --> B[Werte aufbereiten]
   B --> C[Google Sheets: Zeile anlegen]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — eingehende Klickdaten |
+| **Häufigkeit** | Täglich (bei jedem Webhook-Aufruf) |
+| **Schreibt nach** | Google Sheets (Reporting-Sheet) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2082018/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Klickdaten empfangen">
@@ -41,13 +46,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Klickdaten aus dem Webhook | Neue Zeile im Google-Sheet (Reporting) |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

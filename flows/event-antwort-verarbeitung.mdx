@@ -7,19 +7,13 @@ description: Verarbeitet Zu- und Absagen zu Event-Einladungen — aktualisiert d
   **Bereich:** Events · **Status:** 🟢 Aktiv · **Make-ID:** 9270028
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Google Sheets` `Zoho CRM` `Slack`
+
+## In a nutshell
 
 Antwortet ein Eingeladener mit **Zusage** oder **Absage**, verarbeitet dieser Flow die Rückmeldung: Er aktualisiert den Eintrag in der **Google-Sheet-Liste**, hinterlegt eine **Notiz** am zugehörigen **Lead oder Kontakt** in Zoho und postet eine **Benachrichtigung in Slack**. Eine Timing-Prüfung filtert automatisierte Bot-Klicks heraus.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Zu-/Absage auf eine Event-Einladung |
-| **Häufigkeit** | Sofort bei jeder Antwort (Echtzeit) |
-| **Verknüpfte Tools** | Google Sheets, Zoho CRM, Slack |
-| **Schreibt nach** | Google Sheets (Status-Update), Zoho CRM (Notiz an Lead/Kontakt), Slack |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/9270028/edit) |
 
 ## Ablauf
 
@@ -38,6 +32,17 @@ flowchart TD
   J --> K
   C -->|Nein| L[Verworfen — kein Update]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Zu-/Absage auf eine Event-Einladung |
+| **Häufigkeit** | Sofort bei jeder Antwort (Echtzeit) |
+| **Schreibt nach** | Google Sheets (Status-Update), Zoho CRM (Notiz an Lead/Kontakt), Slack |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/9270028/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Antwort empfangen">
@@ -61,13 +66,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | `status` (zusage/absage), Antwortdaten zur Event-Einladung | Aktualisierte Sheet-Zeile, Notiz an Zoho-Lead oder -Kontakt, Slack-Meldung in `event-conversions` |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="warning">
   **Bot-Schutz über Timing:** Der Flow verarbeitet eine Antwort nur, wenn der Eintrag im Sheet gefunden wurde und die Prüfung `__ROW_NUMBER__` vorhanden ist. Damit werden automatisierte Klicks (z. B. von Mail-Scannern) herausgefiltert, die unmittelbar nach dem Versand auslösen.
@@ -77,7 +82,7 @@ flowchart TD
   **Notiz-Ziel hängt vom Datensatz ab:** Existiert ein Contact, wird die Notiz am Kontakt hinterlegt, sonst am Lead. Der Inhalt der Notiz unterscheidet zwischen Zusage und Absage.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

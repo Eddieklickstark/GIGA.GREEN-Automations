@@ -7,23 +7,17 @@ description: Löscht bei einer Calendly-Stornierung einen frisch angelegten Fehl
   **Bereich:** Termine / Calendly · **Status:** 🟢 Aktiv · **Make-ID:** 5179280
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Slack`
+
+## In a nutshell
 
 Wird ein AddSales-Termin über Calendly **storniert**, entfernt dieser Flow den dadurch fälschlich angelegten **Fehl-Lead** in Zoho CRM — aber nur, wenn der Lead **jünger als ein Tag** ist (also durch genau diese Buchung entstanden). Das Team wird per **Slack** über die Conversion-Stornierung informiert.
 
 <Callout kind="warning">
   **Dieser Flow löscht Daten in Zoho CRM.** Es werden Leads per `DeleteObject` entfernt. Die Sicherung dagegen ist allein der Altersfilter (jünger als 1 Tag) — greift dieser nicht korrekt, könnte ein bestehender Lead gelöscht werden. Änderungen am Filter mit besonderer Vorsicht vornehmen.
 </Callout>
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Storno-E-Mail empfangen |
-| **Häufigkeit** | Sofort bei jeder Stornierung (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Slack |
-| **Schreibt nach** | Zoho CRM (Lead löschen), Slack |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/5179280/edit) |
 
 ## Ablauf
 
@@ -38,6 +32,17 @@ flowchart TD
   F -->|Ja| G[Lead löschen]
   F -->|Nein| H[Erneut suchen<br/>+ ggf. löschen]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Storno-E-Mail empfangen |
+| **Häufigkeit** | Sofort bei jeder Stornierung (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead löschen), Slack |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/5179280/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Storno empfangen">
@@ -54,19 +59,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Storno-Webhook (Lead-Identifikation, Buchungsdaten) | Gelöschter Zoho-Lead (falls jünger als 1 Tag), Slack-Nachricht |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="warning">
   **Nur Leads jünger als 1 Tag werden gelöscht.** Filter: `Created_Date_Custom` muss nach `heute − 1 Tag` liegen. Dieser Altersfilter ist die einzige Absicherung gegen das versehentliche Löschen eines echten Bestands-Leads.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

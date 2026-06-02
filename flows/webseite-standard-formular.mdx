@@ -7,19 +7,13 @@ description: Sortiert Anfragen aus dem Standard-Webseiten-Formular nach Kontakt-
   **Bereich:** Lead-Intake / Webseite · **Status:** 🟢 Aktiv · **Make-ID:** 1511715
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Zoho Campaigns` `Slack` `HTTP (E-Mail-Validierung)` `Google Sheets` `E-Mail`
+
+## In a nutshell
 
 Das **Standard-Kontaktformular** der Webseite kann für viele Anliegen genutzt werden. Dieser Flow **sortiert jede Anfrage nach dem angegebenen Kontakt-Grund** und steuert sie in den richtigen Pfad — von der Lead-Anlage in Zoho CRM über Presse-, Karriere- und Whitepaper-Anfragen bis zu bestehenden Kundenkontakten. Inklusive E-Mail-Validierung, UTM-Logik und Slack-Meldung.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Standard-Formular der Webseite |
-| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Zoho Campaigns, Slack, HTTP (E-Mail-Validierung), Google Sheets, E-Mail |
-| **Schreibt nach** | Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack, Google Sheets, E-Mail |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1511715/edit) |
 
 ## Ablauf
 
@@ -40,6 +34,17 @@ flowchart TD
   R -->|Lead bereits vorhanden| Z7[E-Mail an bestehenden Lead]
   R -->|Fallback / Konversion| Z8[Lead anlegen + Sheet + Conversion-Slack]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Standard-Formular der Webseite |
+| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack, Google Sheets, E-Mail |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1511715/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Anfrage empfangen & bereinigen">
@@ -71,13 +76,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Vorname, Nachname, E-Mail, Telefonnummer, Unternehmen, Nachricht, Kontakt-Grund (DE/EN), UTM-Parameter, Formular-Name | Zoho-Lead (mit Quelle), Newsletter-Kontakt, Slack-Nachrichten, Google-Sheets-Zeile, themenspezifische E-Mails |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Nachricht auf 200 Zeichen begrenzt:** Lange Freitexte werden vor der Lead-Anlage gekürzt, Anführungszeichen und Zeilenumbrüche normalisiert.
@@ -91,7 +96,7 @@ flowchart TD
   **E-Mail-Validierung im Whitepaper-Pfad:** Whitepaper-Leads werden nur weiterverarbeitet, wenn der Validierungs-Status safe, catch_all, role_account oder unknown ist.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

@@ -7,19 +7,13 @@ description: Holt die KPIs der Cold-Mail-Kampagnen aus Instantly, aggregiert sie
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 2006361
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Instantly` `Google Sheets`
+
+## In a nutshell
 
 Sammelt die Leistungskennzahlen (KPIs) der **Cold-Mail-Kampagnen aus Instantly**, fasst sie zusammen und schreibt sie als neue Zeile ins **Dashboard-Sheet**. So bleibt das KPI-Reporting ohne manuelles Abtippen aus Instantly aktuell.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Instantly — Campaign Summary (Kampagnen-Kennzahlen) |
-| **Häufigkeit** | Je Ausführung des Szenarios |
-| **Verknüpfte Tools** | Instantly, Google Sheets |
-| **Schreibt nach** | Google Sheets (KPI-Dashboard-Sheet) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2006361/edit) |
 
 ## Ablauf
 
@@ -32,6 +26,17 @@ flowchart TD
   E --> F[Kennzahlen aggregieren]
   F --> G[Google Sheets: Zeile mit KPIs anlegen]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Instantly — Campaign Summary (Kampagnen-Kennzahlen) |
+| **Häufigkeit** | Je Ausführung des Szenarios |
+| **Schreibt nach** | Google Sheets (KPI-Dashboard-Sheet) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2006361/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Kampagnen abrufen">
@@ -51,13 +56,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Kampagnen-Kennzahlen aus Instantly (Versand-, Reply- und Performance-Werte) | Aggregierte KPI-Zeile im Google-Sheet (KPI-Dashboard) |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

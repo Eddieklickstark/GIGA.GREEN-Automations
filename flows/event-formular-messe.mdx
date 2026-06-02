@@ -7,23 +7,17 @@ description: Verarbeitet Event-Lead-Formulare von der Messe-WebApp (Replit) — 
   **Bereich:** Events · **Status:** 🟢 Aktiv · **Make-ID:** 7102488
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Google Sheets` `HTTP (WebApp-Antwort)`
+
+## In a nutshell
 
 Dieser Flow ist die zentrale Schnittstelle zwischen dem **Event-Formular auf der Messe-WebApp (Replit)** und Zoho CRM. Er entscheidet, ob zu einem Messe-Lead bereits ein Kontakt, Account, eine Opportunity oder ein Lead in Zoho existiert, und legt diese an oder aktualisiert sie entsprechend. Zusätzlich plant er Follow-up-Aufgaben, protokolliert fehlgeschlagene Datensätze und schickt eine Antwort an die WebApp zurück.
 
 <Callout kind="warning">
   **Größter und komplexester Flow im Event-System (64 Module).** Das Diagramm unten ist bewusst stark vereinfacht und zeigt nur die beiden Hauptpfade. Vor Änderungen immer das Make-Szenario direkt prüfen — die Verzweigungslogik (verschachtelte Router, Failed-Logging je Zweig) ist im Detail deutlich umfangreicher.
 </Callout>
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Event-Formular der Messe-WebApp (Replit) |
-| **Häufigkeit** | Sofort bei jeder Übermittlung (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Google Sheets, HTTP (WebApp-Antwort) |
-| **Schreibt nach** | Zoho CRM (Contact, Account, Opportunity, Lead, Notizen, Aufgaben), Google Sheets (Failed-Logs), WebApp (HTTP-Response) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/7102488/edit) |
 
 ## Ablauf
 
@@ -47,6 +41,17 @@ flowchart TD
   K --> L[Antwort an WebApp<br/>Failed-Notes loggen]
   J -->|Nein| M[Failed-Notizen<br/>in Sheet loggen]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Event-Formular der Messe-WebApp (Replit) |
+| **Häufigkeit** | Sofort bei jeder Übermittlung (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Contact, Account, Opportunity, Lead, Notizen, Aufgaben), Google Sheets (Failed-Logs), WebApp (HTTP-Response) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/7102488/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Daten empfangen & standardisieren">
@@ -72,13 +77,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | `event_type` (submit/note), Lead-/Kontaktdaten vom Event-Formular, Flags `lead_material_whitepaper` und `lead_follow_up`, Zoho-IDs (`zoho_account_id`, `zoho_contact_id`, `zoho_opportunity_id`, `zoho_lead_id`) | Zoho-Contact, -Account, -Opportunity oder -Lead (angelegt/aktualisiert), Zoho-Notizen, Follow-up-Aufgaben, HTTP-Antwort an die WebApp, Failed-Leads-/Failed-Notizen-Einträge im Sheet |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **submit vs. note:** Das Feld `event_type` steuert den gesamten Flow. „submit" verarbeitet eine komplette Lead-Übermittlung inklusive Anlage/Update und Aufgaben, „note" ergänzt ausschließlich Notizen an bereits in Zoho existierende Datensätze.
@@ -88,7 +93,7 @@ flowchart TD
   **Follow-up-Aufgaben sind optional:** Sie werden nur erzeugt, wenn die entsprechenden Formular-Flags gesetzt sind — `lead_material_whitepaper = true` für die Broschüren-Aufgabe (+1d) und `lead_follow_up = true` für die Follow-up-Aufgabe (+3d).
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

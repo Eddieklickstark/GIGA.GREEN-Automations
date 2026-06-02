@@ -7,19 +7,13 @@ description: Überwacht das SQL-Sheet, prüft Lead-Source, Click-ID und das 90-T
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 6025678
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Google Sheets` `Zoho CRM` `Google Ads Conversions`
+
+## In a nutshell
 
 Sales-Qualified-Leads (SQL) aus der Webseite und aus bezahlter Werbung sollen als **Offline-Conversion** an Google Ads zurückgemeldet werden, damit die Kampagnen-Optimierung auf echten Geschäftserfolg statt nur auf Klicks lernt. Der Flow überwacht das SQL-Sheet und lädt für jeden passenden Lead eine Conversion hoch — aber nur, wenn **Lead-Source, Click-ID und Click-Through-Fenster** stimmen.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Google Sheets — neue Zeile im SQL-Sheet |
-| **Häufigkeit** | Laufend bei jedem neuen SQL-Eintrag |
-| **Verknüpfte Tools** | Google Sheets, Zoho CRM, Google Ads Conversions |
-| **Schreibt nach** | Google Ads (Offline-Conversion) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6025678/edit) |
 
 ## Ablauf
 
@@ -32,6 +26,17 @@ flowchart TD
   E --> F{Innerhalb<br/>90 Tage?}
   F -->|Ja| G[Offline-Conversion zu Google Ads hochladen]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Google Sheets — neue Zeile im SQL-Sheet |
+| **Häufigkeit** | Laufend bei jedem neuen SQL-Eintrag |
+| **Schreibt nach** | Google Ads (Offline-Conversion) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6025678/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Neuer SQL-Eintrag">
@@ -51,13 +56,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | SQL-Sheet-Zeile (Lead-Bezug), Zoho-Lead (Lead-Source, Click-ID, Datum) | Offline-Click-Conversion in Google Ads |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="warning">
   **Drei Bedingungen müssen erfüllt sein**, sonst wird keine Conversion hochgeladen:
@@ -66,7 +71,7 @@ flowchart TD
   - der Klick liegt **innerhalb von 90 Tagen** (Click-Through-Window)
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

@@ -7,19 +7,13 @@ description: Setzt für einen Inbound-Lead den Account Executive als Meeting-Hos
   **Bereich:** Termine / Calendly · **Status:** 🟢 Aktiv · **Make-ID:** 4680166
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Google Calendar` `Google Sheets`
+
+## In a nutshell
 
 Wenn für einen **Inbound-Lead** ein Infotermin gebucht ist, sorgt dieser Flow dafür, dass der zuständige **Account Executive (AE)** korrekt am Termin hängt: Er wird in Zoho CRM als **Meeting-Host** gesetzt und im **Google Calendar** zum Termin eingeladen. Zusätzlich wird der Termin in die **SQL-Liste** (Google Sheet) eingetragen.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — AE- und Lead-Daten vom Zoho Inbound Lead |
-| **Häufigkeit** | Sofort bei eingehendem Inbound-Termin (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Google Calendar, Google Sheets |
-| **Schreibt nach** | Zoho CRM (Meeting-Host), Google Calendar (Einladung), Google Sheets (SQL-Liste) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4680166/edit) |
 
 ## Ablauf
 
@@ -33,6 +27,17 @@ flowchart TD
   F --> G[Zoho: AE als<br/>Meeting-Host setzen]
   D -->|Nein| Z[Ende]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — AE- und Lead-Daten vom Zoho Inbound Lead |
+| **Häufigkeit** | Sofort bei eingehendem Inbound-Termin (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Meeting-Host), Google Calendar (Einladung), Google Sheets (SQL-Liste) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/4680166/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Daten empfangen">
@@ -52,19 +57,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | AE- und Lead-Daten des Zoho Inbound Leads (per Webhook) | Zoho-Meeting mit AE als Host, Google-Calendar-Einladung an den AE, Zeile in der SQL-Liste |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Nur bei vorhandenem Kalendertermin:** Die SQL-Listen-Zeile wird nur geschrieben, wenn im Google Calendar ein passender Termin gefunden wurde.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

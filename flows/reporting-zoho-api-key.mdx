@@ -7,19 +7,13 @@ description: Infrastruktur-Flow, der stündlich den Zoho-API-Access-Key erneuert
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 2129672
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`HTTP` `Make Data Store`
+
+## In a nutshell
 
 Erneuert **stündlich den Zoho-API-Access-Key** und legt ihn im **Make Data Store** ab. Ein reiner Infrastruktur-Flow: Er hält ein gültiges Zugriffstoken bereit, damit andere Szenarien die Zoho-API ansprechen können, ohne sich jeweils neu zu authentifizieren.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | HTTP — Token-Anfrage gegen die Zoho-API |
-| **Häufigkeit** | Stündlich |
-| **Verknüpfte Tools** | HTTP, Make Data Store |
-| **Schreibt nach** | Make Data Store (gecachter Zoho-Access-Key) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2129672/edit) |
 
 ## Ablauf
 
@@ -27,6 +21,17 @@ Erneuert **stündlich den Zoho-API-Access-Key** und legt ihn im **Make Data Stor
 flowchart TD
   A[HTTP: Zoho-Access-Key anfordern] --> B[Data Store: Key speichern]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | HTTP — Token-Anfrage gegen die Zoho-API |
+| **Häufigkeit** | Stündlich |
+| **Schreibt nach** | Make Data Store (gecachter Zoho-Access-Key) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/2129672/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Key anfordern">
@@ -37,19 +42,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Token-Antwort der Zoho-API (Access-Key) | Gecachter Zoho-Access-Key im Make Data Store |
 
-## Wird verwendet von
+### Wird verwendet von
 
 <Callout kind="info">
   Der gecachte Zoho-Token wird von **anderen Make-Szenarien wiederverwendet**, die die Zoho-API per HTTP ansprechen, ohne sich jeweils neu zu authentifizieren. So muss nicht jedes Szenario eine eigene Token-Anfrage stellen. _(zu ergänzen: konkrete konsumierende Szenarien)_
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

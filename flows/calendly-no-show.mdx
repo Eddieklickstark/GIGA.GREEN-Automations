@@ -7,19 +7,13 @@ description: Markiert einen nicht erschienenen Termin (No-Show) per Webhook in d
   **Bereich:** Termine / Calendly · **Status:** 🟢 Aktiv · **Make-ID:** 6295861
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Google Sheets`
+
+## In a nutshell
 
 Ein eingehender **Webhook** markiert einen Termin als **No-Show** (nicht erschienen) in der zugehörigen **Google-Sheet-Liste**. Sehr schlanker Flow aus nur zwei Schritten.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Webhook |
-| **Häufigkeit** | Sofort bei No-Show-Meldung (Echtzeit) |
-| **Verknüpfte Tools** | Google Sheets |
-| **Schreibt nach** | Google Sheets (Zeile aktualisieren) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6295861/edit) |
 
 ## Ablauf
 
@@ -27,6 +21,17 @@ Ein eingehender **Webhook** markiert einen Termin als **No-Show** (nicht erschie
 flowchart TD
   A[Webhook: No-Show] --> B[Google Sheet:<br/>Zeile als No-Show markieren]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook |
+| **Häufigkeit** | Sofort bei No-Show-Meldung (Echtzeit) |
+| **Schreibt nach** | Google Sheets (Zeile aktualisieren) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/6295861/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="No-Show empfangen">
@@ -37,13 +42,13 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | No-Show-Webhook (Termin-/Zeilen-Identifikation) | Aktualisierte Zeile im Google Sheet |
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |

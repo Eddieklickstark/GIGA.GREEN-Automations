@@ -7,19 +7,13 @@ description: Holt wöchentlich die AE-/User-Liste und die Event-Picklist-Felder 
   **Bereich:** Reporting / Dashboard · **Status:** 🟢 Aktiv · **Make-ID:** 3970929
 </Callout>
 
-## Zweck
+## Verwendete Tools
+
+`Zoho CRM` `Google Sheets`
+
+## In a nutshell
 
 Damit nachgelagerte Flows (z. B. die Owner-Zuordnung von Leads) immer mit aktuellen Stammdaten arbeiten, holt dieser Flow **wöchentlich die Zoho-User-Liste (AEs)** sowie die **Auswahlwerte des Event-Feldes** aus Zoho CRM und schreibt beides in ein Google Sheet. Die alten Werte werden vorher geleert, damit das Sheet immer den aktuellen Stand abbildet.
-
-## Auf einen Blick
-
-| | |
-| --- | --- |
-| **Auslöser** | Google Sheets — Zielbereich wird geleert (Start des Laufs) |
-| **Häufigkeit** | Wöchentlich |
-| **Verknüpfte Tools** | Zoho CRM, Google Sheets |
-| **Schreibt nach** | Google Sheets (User-Liste + Event-Werte) |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/3970929/edit) |
 
 ## Ablauf
 
@@ -36,6 +30,17 @@ flowchart TD
   I -->|Ja| J[Event-Auswahlwert ins Sheet schreiben]
 ```
 
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Google Sheets — Zielbereich wird geleert (Start des Laufs) |
+| **Häufigkeit** | Wöchentlich |
+| **Schreibt nach** | Google Sheets (User-Liste + Event-Werte) |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/3970929/edit) |
+
+## Im Detail
+
 <Steps>
   <Step title="Sheet vorbereiten">
     Der Zielbereich im Google Sheet wird **geleert**, damit anschließend nur aktuelle Daten stehen.
@@ -51,19 +56,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Zoho-User-Liste (AEs), Zoho-Feldliste inkl. Event-Picklist | Google Sheet mit aktueller User-Liste und Event-Auswahlwerten |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Nur das Event-Feld wird übernommen:** Beim Durchlaufen der Zoho-Felder schreibt der Flow ausschließlich das Feld mit der Bezeichnung **„Event"** ins Sheet — alle anderen Felder werden übersprungen.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
