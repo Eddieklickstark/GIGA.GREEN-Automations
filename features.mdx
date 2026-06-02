@@ -1,0 +1,84 @@
+---
+title: Core Features
+description: Explore Vantum's main automation features for managing solar energy contracts, monitoring, and reporting.
+---
+
+## Overview
+
+Vantum automates the full lifecycle of solar energy projects. You manage site assessments, contracts, live monitoring, and financial reporting from a single dashboard. Each feature integrates directly with your existing ERP and utility systems.
+
+<Callout kind="info">
+  All features require an active Vantum subscription and valid site credentials.
+</Callout>
+
+## Key Capabilities
+
+<Columns cols={2}>
+  <Card title="Site Assessment" icon="map" href="#automated-site-assessment">
+    Run automated feasibility checks on any commercial roof.
+  </Card>
+  <Card title="Contract Workflows" icon="file-text" href="#contract-management">
+    Generate and track lease agreements with built-in approval routing.
+  </Card>
+  <Card title="Live Monitoring" icon="activity" href="#real-time-monitoring">
+    View production data updated every 15 minutes.
+  </Card>
+  <Card title="ROI Reporting" icon="trending-up" href="#cost-and-roi-reporting">
+    Export savings reports for stakeholders in one click.
+  </Card>
+</Columns>
+
+## Automated Site Assessment
+
+You upload roof plans or coordinates and receive a full feasibility report within minutes. The engine calculates irradiance, structural load, and grid connection viability.
+
+<Steps>
+  <Step title="Upload Data" icon="upload">
+    Provide site address and roof dimensions through the API or web form.
+  </Step>
+  <Step title="Run Analysis" icon="cpu">
+    Vantum processes weather data and local regulations automatically.
+  </Step>
+  <Step title="Review Report" icon="check-circle">
+    Download the PDF or integrate results directly into your CRM.
+  </Step>
+</Steps>
+
+## Contract Management
+
+You create, sign, and monitor lease agreements without leaving the platform. Status updates flow to all parties in real time.
+
+````jsx
+const contract = await vantum.contracts.create({
+  siteId: "site_8f4k2p",
+  lessee: "Acme Corp",
+  termYears: 20,
+  annualRate: 0.082
+});
+console.log(contract.status); // "pending_signature"
+````
+
+## Real-Time Monitoring
+
+Dashboards display live inverter output, grid export, and performance ratios. You set alerts for deviations above 5 percent.
+
+<Tabs>
+  <Tab title="Production" icon="zap">
+    Current output: 1,191 kWp across all sites.
+  </Tab>
+  <Tab title="Alerts" icon="alert-triangle">
+    Three inverters reporting below expected yield today.
+  </Tab>
+</Tabs>
+
+## Cost and ROI Reporting
+
+You generate monthly savings statements that compare actual production against utility rates. Reports include payback projections and carbon offset metrics.
+
+<Expandable title="Advanced reporting options" default-open="false">
+  Enable custom date ranges and export formats (CSV, PDF, or JSON) for integration with your finance tools.
+</Expandable>
+
+## Next Steps
+
+Start with the quickstart guide to connect your first site, then explore the full API reference for deeper automation.

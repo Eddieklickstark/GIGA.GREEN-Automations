@@ -1,0 +1,100 @@
+---
+title: Integrations & Webhooks
+description: Connect Vantum with your existing ERP, energy management, and sustainability reporting systems.
+---
+
+## Overview
+
+Vantum connects seamlessly with your business tools to automate energy data flows and sustainability reporting. You can use native integrations for popular platforms, configure webhooks for real-time events, or access the full API for custom workflows.
+
+<Callout kind="info">
+  All integrations require an active Vantum subscription and API access enabled in your account settings.
+</Callout>
+
+## Native Integrations
+
+Vantum offers direct connections to common enterprise systems without custom development.
+
+<Columns cols={3}>
+  <Card title="SAP ERP" icon="database" href="#sap-integration">
+    Sync contract and billing data automatically.
+  </Card>
+  <Card title="Salesforce" icon="users" href="#salesforce-integration">
+    Link energy contracts to customer records.
+  </Card>
+  <Card title="Siemens Desigo" icon="zap" href="#energy-management">
+    Pull real-time consumption metrics.
+  </Card>
+</Columns>
+
+## Setting Up Webhooks
+
+You can receive instant notifications when energy production changes or contracts update. Follow these steps to configure webhooks.
+
+<Steps>
+  <Step title="Create Endpoint" icon="terminal">
+    Set up a secure HTTPS endpoint that accepts POST requests.
+  </Step>
+  <Step title="Register Webhook" icon="settings">
+    Add the endpoint in your Vantum dashboard under Integrations.
+  </Step>
+  <Step title="Verify Signature" icon="shield">
+    Validate incoming requests using the provided HMAC signature.
+  </Step>
+</Steps>
+
+## Webhook Configuration Example
+
+Use the following code to handle incoming events in your application.
+
+````javascript
+app.post('/webhook/vantum', (req, res) => {
+  const signature = req.headers['x-vantum-signature'];
+  if (!verifySignature(req.body, signature)) {
+    return res.status(401).send('Invalid signature');
+  }
+  if (req.body.event === 'energy.production.updated') {
+    updateDashboard(req.body.data);
+  }
+  res.status(200).send('OK');
+});
+````
+
+## API Access for Custom Workflows
+
+You can build custom automations using the REST API. All endpoints require authentication via API key.
+
+<CodeGroup tabs="cURL,Python,JavaScript">
+```bash
+curl -X GET https://api.example.com/v1/contracts \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+```python
+import requests
+response = requests.get(
+  "https://api.example.com/v1/contracts",
+  headers={"Authorization": "Bearer YOUR_API_KEY"}
+)
+print(response.json())
+```
+```javascript
+const response = await fetch("https://api.example.com/v1/contracts", {
+  headers: { Authorization: "Bearer YOUR_API_KEY" }
+});
+const data = await response.json();
+```
+</CodeGroup>
+
+## Data Export for ESG Reporting
+
+You can export production and consumption data in standard formats for compliance reports.
+
+<Expandable title="Supported Export Formats" default-open="false">
+  Vantum supports CSV, JSON, and XML exports. Use the export endpoint with query parameters to filter by date range and site.
+</Expandable>
+
+<ParamField body="format" param-type="string" required="true">
+  Choose between `csv`, `json`, or `xml`.
+</ParamField>
+
+You now have everything needed to integrate Vantum with your existing systems and automate sustainability workflows.
