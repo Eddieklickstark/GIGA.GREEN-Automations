@@ -7,19 +7,13 @@ description: Wandelt eine deutschsprachige Webseiten-Anfrage aus Heyflow in eine
   **Bereich:** Lead-Intake / Webseite · **Status:** 🟢 Aktiv · **Make-ID:** 1332443
 </Callout>
 
-## Zweck
+## Verwendete Tools
 
-Jede neue **deutschsprachige Anfrage** über das Heyflow-Formular auf der Webseite wird automatisch zu einem Lead in Zoho CRM. Der Flow prüft vorher, ob der Lead schon existiert, erkennt die Lead-Quelle (bezahlte Kampagne vs. organisch) und benachrichtigt das Team in Slack.
+`Zoho CRM` `Slack` `Zoho Campaigns` `E-Mail`
 
-## Auf einen Blick
+## In a nutshell
 
-| | |
-| --- | --- |
-| **Auslöser** | Webhook — Formular-Absenden in Heyflow |
-| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
-| **Verknüpfte Tools** | Zoho CRM, Slack, Zoho Campaigns, E-Mail |
-| **Schreibt nach** | Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack |
-| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1332443/edit) |
+Eine deutschsprachige Webseiten-Anfrage über **Heyflow** wird automatisch zum **Zoho-Lead** — mit Dublettenprüfung, Quellenerkennung (bezahlte Kampagne vs. organisch), **Slack**-Meldung und Eintrag in den **Newsletter**. Testanfragen werden herausgefiltert.
 
 ## Ablauf
 
@@ -37,6 +31,17 @@ flowchart TD
   I --> J[Slack-Benachrichtigung]
   J --> K[Benachrichtigungs-E-Mail]
 ```
+
+## Auf einen Blick
+
+| | |
+| --- | --- |
+| **Auslöser** | Webhook — Formular-Absenden in Heyflow |
+| **Häufigkeit** | Sofort bei jeder Anfrage (Echtzeit) |
+| **Schreibt nach** | Zoho CRM (Lead), Zoho Campaigns (Newsletter), Slack |
+| **Wo zu finden** | [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/1332443/edit) |
+
+## Im Detail
 
 <Steps>
   <Step title="Anfrage empfangen">
@@ -58,19 +63,19 @@ flowchart TD
   </Step>
 </Steps>
 
-## Daten
+### Daten
 
 | Rein | Raus |
 | --- | --- |
 | Vorname, Nachname, E-Mail, Unternehmen, Nachricht, UTM-Parameter, gclid | Zoho-Lead (mit Quelle), Newsletter-Kontakt, Slack-Nachricht |
 
-## Wichtige Regeln
+### Wichtige Regeln
 
 <Callout kind="info">
   **Test-Anfragen werden gefiltert:** Enthält Vor-, Nachname, Unternehmen oder E-Mail das Wort „test", wird der Kontakt **nicht** in Zoho Campaigns eingetragen.
 </Callout>
 
-## Fehlerfälle
+### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
