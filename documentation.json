@@ -86,7 +86,8 @@
             "icon": "code",
             "pages": [
               { "title": "Marketing-Dashboard", "path": "apps/dashboard", "icon": "chart-pie" },
-              { "title": "Event-App", "path": "apps/event-app", "icon": "ticket" }
+              { "title": "Event-App", "path": "apps/event-app", "icon": "ticket" },
+              { "title": "Messeapp", "path": "apps/messeapp", "icon": "scan-line" }
             ]
           }
         ]
