@@ -4,7 +4,7 @@
     "light": "/logo/giga-green.svg",
     "dark": "/logo/giga-green-dark.svg"
   },
-  "favicon": "/logo/favicon.svg",
+  "favicon": "https://blob-cdn.documentation.ai/org-93664c7c-c04c-4ecb-9528-58adb3723e5e/doc-ddb535d3-7aa5-41ed-9a94-090d3bfe947a/1780484093618-5cpjsvqu66p-GigaGreenFavicon.svg?fm=auto&auto=compress%2Cformat",
   "appearance": {
     "default": "light"
   },
@@ -15,7 +15,7 @@
       "text": "#374151"
     },
     "dark": {
-      "brand": "#fff86c",
+      "brand": "#073b2a",
       "heading": "#f2f2f2",
       "text": "#c1c1c1"
     }
@@ -253,6 +253,5 @@
   },
   "logo-dark": "https://blob-cdn.documentation.ai/org-93664c7c-c04c-4ecb-9528-58adb3723e5e/doc-ddb535d3-7aa5-41ed-9a94-090d3bfe947a/1780484221114-kap42yu9s0k-GigaGreenLogo_White-text.svg?fm=auto&auto=compress%2Cformat",
   "logo-light": "https://blob-cdn.documentation.ai/org-93664c7c-c04c-4ecb-9528-58adb3723e5e/doc-ddb535d3-7aa5-41ed-9a94-090d3bfe947a/1780483781084-5nvcm31tib9-GigaGreenLogo.svg?fm=auto&auto=compress%2Cformat",
-  "favicon": "https://blob-cdn.documentation.ai/org-93664c7c-c04c-4ecb-9528-58adb3723e5e/doc-ddb535d3-7aa5-41ed-9a94-090d3bfe947a/1780484093618-5cpjsvqu66p-GigaGreenFavicon.svg?fm=auto&auto=compress%2Cformat",
   "template": "classic"
 }
