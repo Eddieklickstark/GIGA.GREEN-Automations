@@ -2,7 +2,7 @@
   "name": "GIGA.GREEN Automations",
   "logo": {
     "light": "/logo/giga-green.svg",
-    "dark": "/logo/giga-green.svg"
+    "dark": "/logo/giga-green-dark.svg"
   },
   "favicon": "/logo/favicon.svg",
   "appearance": {
