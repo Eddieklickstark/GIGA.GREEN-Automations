@@ -10,12 +10,12 @@
   },
   "colors": {
     "light": {
-      "brand": "#fff86c",
+      "brand": "#073b2a",
       "heading": "#1a1a1a",
       "text": "#374151"
     },
     "dark": {
-      "brand": "#073b2a",
+      "brand": "#fff86c",
       "heading": "#f2f2f2",
       "text": "#c1c1c1"
     }
