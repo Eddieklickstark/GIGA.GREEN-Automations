@@ -1,5 +1,13 @@
 {
   "name": "GIGA.GREEN Automations",
+  "logo": {
+    "light": "/logo/giga-green.svg",
+    "dark": "/logo/giga-green.svg"
+  },
+  "favicon": "/logo/giga-green.svg",
+  "appearance": {
+    "default": "light"
+  },
   "colors": {
     "light": {
       "brand": "#849a44"
