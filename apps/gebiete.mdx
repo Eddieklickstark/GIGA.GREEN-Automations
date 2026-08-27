@@ -1,0 +1,22 @@
+---
+title: Vertriebsgebiete
+description: Verwaltungsoberfläche für Vertriebsgebiete, Ansprechpartner und Calendly-Links mit Versionierung und geplanten Umstellungen.
+---
+
+<Callout kind="info">
+  **Typ:** Eigene Web-App (Next.js) · **Status:** Aktiv · **URL:** gebiete.vertrieb.giga.green
+</Callout>
+
+## Was es ist
+
+Das Team pflegt Vertriebsgebiete, Ansprechpartner und Calendly-Links zentral auf einer Oberfläche mit Deutschlandkarte und Rasteransicht. Änderungen landen zuerst in einem Entwurf und gehen per Klick live, jede publizierte Version lässt sich wiederherstellen, Umstellungen lassen sich mit Startdatum planen. Buchungsseite und CRM lesen die Zuordnung unverändert weiter.
+
+## Technik
+
+- Login per E-Mail-Link, Zugriff nur für freigeschaltete Personen aus der CRM-Nutzerliste.
+- Entwurf-und-Publish-Versionierung: jede Veröffentlichung ist ein eigener Stand mit Wiederherstellung.
+- Gehostet auf dem GIGA-Server (Coolify, Rechenzentrum Nürnberg), eigene Postgres-Datenbank.
+
+<Card title="Vertriebsgebiete öffnen" icon="map" href="https://gebiete.vertrieb.giga.green/">
+  Die Live-App (Login per E-Mail-Link).
+</Card>

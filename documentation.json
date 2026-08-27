@@ -211,6 +211,21 @@
                 "title": "Messeapp",
                 "path": "apps/messeapp",
                 "icon": "scan-line"
+              },
+              {
+                "title": "Vertriebsgebiete",
+                "path": "apps/gebiete",
+                "icon": "map"
+              },
+              {
+                "title": "HR-System",
+                "path": "apps/hr",
+                "icon": "users"
+              },
+              {
+                "title": "Vertragstool",
+                "path": "apps/vertragstool",
+                "icon": "file-text"
               }
             ]
           }

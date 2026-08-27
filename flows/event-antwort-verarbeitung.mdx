@@ -38,6 +38,7 @@ flowchart TD
 - **Auslöser:** Webhook bei Zusage oder Absage auf eine Event-Einladung
 - **Häufigkeit:** Sofort bei jeder Antwort (Echtzeit)
 - **Schreibt nach:** Google Sheets (Status-Update), Zoho CRM (Notiz an Lead oder Kontakt), Slack
+- **Absender:** die Event-App. Sie prüft jede Antwort vorab mit einem Bot-Scoring (Mehrfach-Signale statt reinem Timing) und sendet erst danach den Webhook mit `status`, `vorname`, `nachname`, `invite_method` und `clicked_at`.
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/9270028/edit)
 
 ## Im Detail
@@ -60,7 +61,7 @@ flowchart TD
     Der Notiz-Text richtet sich danach, ob es eine **Zusage** oder **Absage** war.
   </Step>
   <Step title="Slack-Meldung">
-    Zum Abschluss wird eine Benachrichtigung im Kanal **event-conversions** gepostet.
+    Zum Abschluss wird eine Benachrichtigung im Kanal **event-conversions** gepostet. Seit August 2026 steht über der E-Mail-Zeile eine Gast-Zeile mit Vor- und Nachnamen aus dem Payload; fehlt der Name, entfällt die Zeile. Der Zeitstempel zeigt den echten Antwort-Zeitpunkt (`clicked_at`), nicht den Verarbeitungszeitpunkt, damit Nachzügler aus der Queue korrekt datiert sind.
   </Step>
 </Steps>
 

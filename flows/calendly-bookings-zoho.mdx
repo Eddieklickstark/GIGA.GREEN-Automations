@@ -15,6 +15,10 @@ description: Bucht jemand einen Termin über Calendly, legt dieser Flow daraus L
 
 Bucht jemand einen Termin über **Calendly**, greift dieser Flow zu: Er schaut auf die Terminart (Informationstermine, Messetermine, Folgetermine und Projektanalysen), erkennt ob es eine neue Buchung oder eine Umbuchung ist, ordnet den passenden **Account Executive** zu und legt in **Zoho CRM** Lead und Meeting an oder aktualisiert sie. Jede Buchung landet zusätzlich in einem **Google Sheet**.
 
+<Callout kind="info">
+  **Zuständigkeits-Grenze seit August 2026:** Buchungstypen der Expo-Kampagnen (in der Event-App einem Event zugeordnet) verarbeitet die [Event-App](/apps/event-app) eigenständig, inklusive automatischer CRM-Anlage unbekannter Bucher. Die Event-App ignoriert im Gegenzug alle Infotermin-Typen, die bleiben vollständig bei diesem Flow. Details in der [Event-Doku](https://docs.events.giga.green/integrations/calendly).
+</Callout>
+
 <Callout kind="warning">
   Dies ist mit **52 Modulen der größte Termin-Flow**. Das Ablaufdiagramm unten zeigt nur den Hauptpfad und die wichtigsten Verzweigungen, der echte Flow enthält zahlreiche verschachtelte Router, Hilfsschritte zur AE-Zuordnung und Spreadsheet-Pflege. Bei Änderungen immer das Make-Szenario direkt betrachten.
 </Callout>

@@ -1,0 +1,26 @@
+---
+title: HR-System
+description: Eigenständige Web-App für Onboarding, Inventarverwaltung und Offboarding mit eigener Doku.
+---
+
+<Callout kind="info">
+  **Typ:** Eigene Web-App (Next.js) · **Status:** Aktiv · **URL:** hr.giga.green
+</Callout>
+
+## Was es ist
+
+Onboarding-Checklisten, Inventarverwaltung (wer hat welches Gerät) und Offboarding-Prozesse für das GIGA-Team. Tägliche Jobs auf dem Server erinnern und prüfen automatisch: Onboarding-Check, Offboarding-Reminder, Bestands-Alarm.
+
+## Technik
+
+- Gehostet auf dem GIGA-Server (Coolify, Rechenzentrum Nürnberg), eigene Postgres-Datenbank.
+- Tägliches Datenbank-Backup über Coolify plus zusätzlicher Off-Site-Dump mit Slack-Alarm bei Fehlschlag.
+
+<Columns cols={2}>
+  <Card title="HR-Doku öffnen" icon="book-open" href="https://hr-system-docs.giga.green/">
+    Prozesse, Datenmodell und Betrieb.
+  </Card>
+  <Card title="HR-System öffnen" icon="external-link" href="https://hr.giga.green/">
+    Die Live-App.
+  </Card>
+</Columns>

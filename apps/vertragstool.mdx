@@ -1,0 +1,22 @@
+---
+title: Vertragstool
+description: In die Webflow-Seite eingebettetes Widget für Vertragsvorlagen mit Admin-Pflege über Google-Drive-Links.
+---
+
+<Callout kind="info">
+  **Typ:** Eigene Web-App (Next.js auf Vercel) · **Status:** Aktiv · **URL:** gigagreen-vertraege.vercel.app
+</Callout>
+
+## Was es ist
+
+Besucher der GIGA-Webseite laden Vertragsvorlagen und Unterlagen zur Gebäudeversorgung herunter. Das Tool wird als Skript-Widget (`embed.js`) in die Webflow-Seite eingebettet, das Team pflegt die Dokumente im Admin-Bereich über Google-Drive-Links inklusive Sortierung per Drag-and-drop.
+
+## Technik
+
+- Next.js auf Vercel, Datenhaltung in Vercel Blob Storage (eine JSON-Datei pro Kategorie).
+- Lesend öffentliche API, schreibende Endpunkte hinter Auth.
+- Downloads laufen über die Drive-Direktlinks; das Widget umgeht die Framing-Sperre von Google mit einem direkten Abruf.
+
+<Card title="Vertragstool öffnen" icon="file-text" href="https://gigagreen-vertraege.vercel.app/">
+  Admin-Bereich für die Dokumentenpflege.
+</Card>

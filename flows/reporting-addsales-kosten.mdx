@@ -1,54 +1,75 @@
 ---
 title: AddSales Kosten-Verarbeitung
-description: Sobald AddSales eine Rechnung per Mail schickt, fängt dieser Flow sie ab und lädt die angehängte Rechnungsdatei herunter.
+description: Rechnungs-Mails von AddSales werden automatisch ausgelesen und als Netto-Summe im Kosten-Sheet des Dashboards verbucht.
 ---
 
 <Callout kind="info">
-  **Bereich:** Reporting und Dashboard · **Status:** Aktiv · **Make-ID:** 8895203
+  **Bereich:** Reporting und Dashboard · **Status:** Aktiv (live seit 30.07.2026) · **Make-ID:** 8895203
 </Callout>
 
 ## Verwendete Tools
 
-`E-Mail` `HTTP`
+`E-Mail` `HTTP` `Text-Parser` `Google Sheets`
 
 ## In a nutshell
 
-AddSales schickt **Rechnungen per E-Mail**. Dieser Flow fängt die Mails über einen Mail-Hook ab und **lädt die Rechnungsdatei herunter**, als Grundlage für die Kostenerfassung im Reporting.
+AddSales stellt Rechnungen über das Lexware-Kundenportal, die Mail enthält nur einen Portal-Link statt eines echten PDF-Anhangs. Dieser Flow authentifiziert sich gegen die Portal-API, liest die strukturierten Rechnungsdaten aus und addiert den Netto-Betrag auf die passende Monatszelle im Kosten-Sheet. Damit landet jede Rechnung ohne manuelles Eintragen im Dashboard-Reporting.
 
 ## Ablauf
 
 ```mermaid
 flowchart TD
-  A[Rechnungs-Mail von AddSales empfangen] --> B[Rechnungsdatei per HTTP herunterladen]
+  A[Rechnungs-Mail am Mail-Hook] --> B{Portal-Link im HTML?}
+  B -->|nein| X[Ende, keine AddSales-Rechnung]
+  B -->|ja| C[Link-Token per Text-Parser extrahieren]
+  C --> D[Portal-API authentifizieren]
+  D --> E[Rechnungs-JSON abrufen]
+  E --> F{Rechnungsnummer schon im Log-Tab?}
+  F -->|ja| X2[Ende, Duplikat]
+  F -->|nein| G[Zeile ins Log-Tab schreiben]
+  G --> H[Netto auf die Monatszelle addieren]
 ```
 
 ## Auf einen Blick
 
-- **Auslöser:** Mail-Hook, eine eingehende Rechnungs-E-Mail von AddSales
-- **Häufigkeit:** Sofort bei jeder eingehenden Rechnungs-Mail (Echtzeit)
-- **Schreibt nach:** Datei-Download (Rechnungsdatei)
+- **Auslöser:** Mail-Hook, jede eingehende Rechnungs-Mail (auch manuell weitergeleitete alte Rechnungen funktionieren, der Filter prüft nur den Portal-Link, nicht den Absender)
+- **Häufigkeit:** Sofort bei jeder Mail
+- **Schreibt nach:** KPI-Kosten-Sheet (Log-Tab plus Monatszelle)
 - **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/8895203/edit)
 
 ## Im Detail
 
 <Steps>
-  <Step title="Rechnungs-Mail empfangen">
-    Der **Mail-Hook „Rechnungen AddSales"** empfängt die eingehende E-Mail von AddSales.
+  <Step title="Mail empfangen und filtern">
+    Der Mail-Hook nimmt die Rechnungs-Mail an. Weiter geht es nur, wenn das HTML den Lexware-Portal-Link enthält.
   </Step>
-  <Step title="Datei herunterladen">
-    Über einen **HTTP-Download** wird die in der Mail referenzierte Rechnungsdatei abgerufen.
+  <Step title="Rechnungsdaten über die Portal-API holen">
+    Lexware liefert kein echtes PDF im Anhang, sondern einen Portal-Link. Der Flow authentifiziert sich gegen die Portal-API (das Portal verlangt als Geheimnis die Postleitzahl des Empfängers) und erhält ein strukturiertes Rechnungs-JSON: Rechnungsnummer, Datum, Positionen mit Netto-Preisen und Steuersätzen, Bruttobetrag.
+  </Step>
+  <Step title="Duplikat-Check">
+    Vor dem Verbuchen prüft der Flow die Rechnungsnummer gegen den Log-Tab. Bereits verbuchte Rechnungen enden hier, auch bei doppelter Mail-Zustellung.
+  </Step>
+  <Step title="Verbuchen">
+    Eine Zeile wandert in den Log-Tab, danach wird der Netto-Betrag auf die Monatszelle des Rechnungsmonats addiert. Der Flow läuft sequentiell, damit zwei gleichzeitig eintreffende Rechnungen sich beim Addieren nicht überschreiben.
   </Step>
 </Steps>
+
+### Wichtige Regeln
+
+<Callout kind="info">
+  **Netto-Berechnung:** Netto ergibt sich aus Brutto geteilt durch (1 plus Steuersatz der ersten Position). **Spalten-Zuordnung:** Enthält eine Position das Wort "cold", zählt der Betrag zur Coldmail-Spalte, alles andere (auch SDR Inbound und Event-Akquise) zur Calling-Spalte. Das ist ein bewusster Default.
+</Callout>
 
 ### Daten
 
 | Rein | Raus |
 | --- | --- |
-| Eingehende AddSales-Rechnungs-Mail (Datei-Link) | Heruntergeladene Rechnungsdatei |
+| Rechnungs-Mail mit Portal-Link | Log-Zeile (Rechnungsnummer, Datum, Netto) und aktualisierte Monatszelle im Kosten-Sheet |
 
 ### Fehlerfälle
 
 | Symptom | Mögliche Ursache | Erste Maßnahme |
 | --- | --- | --- |
-| Flow wird nicht ausgelöst | Mail-Hook empfängt keine Mail, weil Weiterleitung oder Adresse falsch sind | Mail-Hook-Adresse prüfen und Test-Mail an den Hook senden |
-| Datei wird nicht heruntergeladen | Download-Link in der Mail ungültig oder abgelaufen | Im Make-Szenario die letzte Ausführung prüfen, Mail-Inhalt und HTTP-Request kontrollieren |
+| Flow wird nicht ausgelöst | Mail ging nicht an die Hook-Adresse | Rechnungs-Mail einfach an die Hook-Adresse weiterleiten, der Absender ist egal |
+| Rechnung fehlt im Sheet | Portal-Link abgelaufen oder API-Antwort leer | Letzte Ausführung im Make-Szenario prüfen, Mail erneut weiterleiten |
+| Betrag doppelt | Duplikat-Check greift nur über die Rechnungsnummer | Log-Tab auf die Rechnungsnummer prüfen und die Monatszelle manuell korrigieren |
