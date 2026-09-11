@@ -3,68 +3,8 @@ title: System-Landkarte
 description: Alle aktiven Automationen und ihre verbundenen Tools auf einen Blick.
 ---
 
-## Datenflüsse im Überblick
+<Callout kind="warning">
+  **Diese Dokumentation ist umgezogen.** Die aktuelle Version dieser Seite findest du hier: [https://docs.automations.giga.green/system-map](https://docs.automations.giga.green/system-map)
+</Callout>
 
-Die Grafik zeigt, woher Daten kommen (Quellen), welche Automations-Bereiche sie verarbeiten und wo sie landen. Im Zentrum steht fast immer **Zoho CRM** als führendes System.
-
-```mermaid
-flowchart LR
-  subgraph Quellen
-    HF[Heyflow Formulare]
-    ADS[Facebook / LinkedIn Ads]
-    CAL[Calendly]
-    EVT[Event- & Messe-Formulare]
-    INST[Instantly Cold-Mail]
-    SM[Supermetrics / Google Ads]
-  end
-
-  subgraph Make["Make.com · GIGAGREEN"]
-    LI[Lead-Intake]
-    TM[Termine]
-    EV[Events]
-    RP[Reporting]
-    CE[Cold-E-Mail]
-  end
-
-  subgraph Ziele
-    ZOHO[(Zoho CRM)]
-    GS[(Google Sheets)]
-    SLACK[Slack]
-    ZC[Zoho Campaigns]
-    GC[Google Calendar]
-    DASH[Marketing-Dashboard]
-  end
-
-  HF --> LI
-  ADS --> LI
-  CAL --> TM
-  EVT --> EV
-  INST --> CE
-  SM --> RP
-
-  LI --> ZOHO
-  LI --> SLACK
-  LI --> ZC
-  TM --> ZOHO
-  TM --> GC
-  TM --> GS
-  EV --> ZOHO
-  EV --> SLACK
-  EV --> GS
-  CE --> GS
-  RP --> GS
-  RP --> ZOHO
-  GS --> DASH
-  ZOHO --> DASH
-```
-
-## Die Flows nach Bereich
-
-| Bereich | Flows | Kurzbeschreibung |
-| --- | --- | --- |
-| **Lead-Intake und Webseite** | 4 | Formulare auf der Webseite und in Ads → Zoho-Lead, Slack-Meldung, Newsletter. Inklusive Dublettenprüfung, UTM-Quellenerkennung und Test-Lead-Filter. |
-| **Termine und Calendly** | 4 | Calendly-Buchungen → Zoho-Meeting, AE-Kalender und SQL-Liste. Stornos löschen frische Fehl-Leads, No-Shows werden markiert. |
-| **Events** | 4 | Formulare für Messen und Events legen Kontakte, Accounts, Opportunities und Notizen in Zoho an. Zusagen und Absagen werden als Notiz verbucht und in Slack gemeldet. |
-| **Reporting und Dashboard** | 8 | Sammelt Kosten, Klicks und Kampagnen-KPIs, dedupliziert Lead-Listen und lädt SQL-Conversions zu Google Ads hoch. Bildet die Datenbasis fürs Dashboard. |
-| **Cold Mail und Outreach** | 1 | Negative Antworten aus Instantly werden an den zuständigen Kollegen weitergeleitet und protokolliert. |
-| **Sonstiges** | 1 | Wiederkehrende Erinnerungs-E-Mail zur Pflege der Kosten von Yoyaba und AddSales. |
+Die Automations-Dokumentation liegt seit September 2026 unter [docs.automations.giga.green](https://docs.automations.giga.green) hinter dem Login des Event-Systems. Bitte das Lesezeichen aktualisieren, diese Adresse wird abgeschaltet.

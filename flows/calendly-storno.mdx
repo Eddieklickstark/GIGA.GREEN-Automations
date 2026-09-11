@@ -3,77 +3,8 @@ title: Addsales Calendly Storno → Lead entfernen
 description: Storniert jemand seinen Calendly-Termin, löscht dieser Flow den dadurch frisch entstandenen Fehl-Lead in Zoho (nur wenn er jünger als ein Tag ist) und meldet das in Slack.
 ---
 
-<Callout kind="info">
-  **Bereich:** Termine und Calendly · **Status:** Aktiv · **Make-ID:** 5179280
-</Callout>
-
-## Verwendete Tools
-
-`Zoho CRM` `Slack`
-
-## In a nutshell
-
-Storniert jemand einen AddSales-Termin in **Calendly**, entfernt dieser Flow den **Fehl-Lead**, der durch die Buchung in Zoho entstanden ist, aber nur wenn der Lead **jünger als ein Tag** ist (also wirklich aus dieser Buchung stammt). Das Team erfährt die Stornierung über **Slack**.
-
 <Callout kind="warning">
-  **Dieser Flow löscht Daten in Zoho CRM.** Es werden Leads per `DeleteObject` entfernt. Die Sicherung dagegen ist allein der Altersfilter (jünger als 1 Tag), greift dieser nicht korrekt, könnte ein bestehender Lead gelöscht werden. Änderungen am Filter mit besonderer Vorsicht vornehmen.
+  **Diese Dokumentation ist umgezogen.** Die aktuelle Version dieser Seite findest du hier: [https://docs.automations.giga.green/flows/calendly-storno](https://docs.automations.giga.green/flows/calendly-storno)
 </Callout>
 
-## Ablauf
-
-```mermaid
-flowchart TD
-  A[Webhook: Storno empfangen] --> B[Slack-Hinweis]
-  B --> C[Verzögerung]
-  C --> D[Zoho: Lead finden]
-  D --> E{Lead jünger<br/>als 1 Tag?}
-  E -->|Nein| Z[Nichts löschen]
-  E -->|Ja| F{Lead<br/>gefunden?}
-  F -->|Ja| G[Lead löschen]
-  F -->|Nein| H[Erneut suchen<br/>+ ggf. löschen]
-```
-
-## Auf einen Blick
-
-- **Auslöser:** Webhook, wenn eine Stornierung per E-Mail eingeht
-- **Häufigkeit:** Sofort bei jeder Stornierung (Echtzeit)
-- **Schreibt nach:** Zoho CRM (Lead löschen), Slack
-- **Wo zu finden:** [Make-Szenario öffnen ↗](https://eu2.make.com/548585/scenarios/5179280/edit)
-
-## Im Detail
-
-<Steps>
-  <Step title="Storno empfangen">
-    Ein Webhook empfängt die **Storno-E-Mail** der Calendly-Buchung und es geht eine **Slack-Meldung** raus.
-  </Step>
-  <Step title="Verzögern und Lead suchen">
-    Nach einer kurzen **Verzögerung** sucht der Flow den zugehörigen **Lead in Zoho CRM**.
-  </Step>
-  <Step title="Altersprüfung">
-    Es wird nur weitergemacht, wenn das **Erstellungsdatum des Leads jünger als ein Tag** ist (`Created_Date_Custom` > heute − 1 Tag). Damit werden nur frisch durch die stornierte Buchung entstandene Fehl-Leads getroffen.
-  </Step>
-  <Step title="Lead löschen">
-    Ist der Lead vorhanden, wird er **gelöscht**. Wird beim ersten Versuch keiner gefunden, sucht der Flow gestaffelt erneut und löscht den Treffer.
-  </Step>
-</Steps>
-
-### Daten
-
-| Rein | Raus |
-| --- | --- |
-| Storno-Webhook (Lead-Identifikation, Buchungsdaten) | Gelöschter Zoho-Lead (falls jünger als 1 Tag), Slack-Nachricht |
-
-### Wichtige Regeln
-
-<Callout kind="warning">
-  **Nur Leads jünger als 1 Tag werden gelöscht.** Filter: `Created_Date_Custom` muss nach `heute − 1 Tag` liegen. Dieser Altersfilter ist die einzige Absicherung gegen das versehentliche Löschen eines echten Bestands-Leads.
-</Callout>
-
-### Fehlerfälle
-
-| Symptom | Mögliche Ursache | Erste Maßnahme |
-| --- | --- | --- |
-| Fehl-Lead bleibt bestehen | Lead älter als 1 Tag oder bei Suche nicht gefunden | Erstellungsdatum prüfen, Zoho-Suche im Szenario kontrollieren |
-| Echter Lead versehentlich gelöscht | Altersfilter zu weit gefasst oder Datumsfeld falsch | Sofort Filter `Created_Date_Custom` prüfen, Lead in Zoho wiederherstellen |
-| Keine Slack-Meldung | Slack-Verbindung getrennt | Slack-Connection in Make neu verbinden |
-| Storno wird nicht verarbeitet | Webhook nicht ausgelöst | Letzte Ausführung im Make-Szenario prüfen |
+Die Automations-Dokumentation liegt seit September 2026 unter [docs.automations.giga.green](https://docs.automations.giga.green) hinter dem Login des Event-Systems. Bitte das Lesezeichen aktualisieren, diese Adresse wird abgeschaltet.

@@ -3,31 +3,8 @@ title: Monitoring und Fehlerfälle
 description: Wie man erkennt, ob die Automationen laufen, und was bei den häufigsten Problemen zu tun ist.
 ---
 
-## Wo man den Status sieht
-
-| Wo | Was man sieht |
-| --- | --- |
-| **Make.com → Szenario → History** | Letzte Ausführungen, Erfolg oder Fehler je Durchlauf |
-| **Make.com → Szenario → „Incomplete Executions" und DLQ** | Hängengebliebene oder fehlgeschlagene Durchläufe |
-| **Slack** | Viele Flows melden Erfolge (neue Leads, Conversions) direkt ins Team |
-| **„Failed Leads"-Sheets** | Einige Event-Flows protokollieren fehlgeschlagene Datensätze separat im Google Sheet |
-
-## Häufigste Fehlerquellen
-
 <Callout kind="warning">
-  **Abgelaufene Verbindung** ist mit Abstand die häufigste Ursache. Die Connections zu Zoho, Google oder Slack müssen gelegentlich in Make neu autorisiert werden, danach laufen die betroffenen Szenarien wieder.
+  **Diese Dokumentation ist umgezogen.** Die aktuelle Version dieser Seite findest du hier: [https://docs.automations.giga.green/betrieb/monitoring](https://docs.automations.giga.green/betrieb/monitoring)
 </Callout>
 
-| Symptom | Wahrscheinliche Ursache | Erste Maßnahme |
-| --- | --- | --- |
-| Lead oder Termin landet nicht in Zoho | Zoho-Connection abgelaufen oder Webhook nicht ausgelöst | Letzte Ausführung in Make prüfen, Connection neu autorisieren |
-| Keine Slack-Meldungen mehr | Slack-Connection getrennt | Slack-Verbindung in Make neu verbinden |
-| Daten landen nicht im Sheet oder Dashboard | Google-Connection oder Sheet-Struktur verändert | Namen der Spalten und Tabs prüfen, Connection kontrollieren |
-| Doppelte Leads | Dublettenprüfung greift nicht (zum Beispiel abweichende E-Mail-Schreibweise) | Schritt zum Bereinigen und Suchen im jeweiligen Flow prüfen |
-| Lead fehlt im Newsletter | Test-Filter hat gegriffen oder Zoho-Campaigns-Connection defekt | Auf „test" in den Daten prüfen, Verbindung kontrollieren |
-
-## Eskalation
-
-<Callout kind="info">
-  _(Zu ergänzen.)_ Wer wird bei einem Ausfall informiert, und wie schnell? Sobald das geklärt ist, halten wir hier einen klaren Eskalationsweg fest.
-</Callout>
+Die Automations-Dokumentation liegt seit September 2026 unter [docs.automations.giga.green](https://docs.automations.giga.green) hinter dem Login des Event-Systems. Bitte das Lesezeichen aktualisieren, diese Adresse wird abgeschaltet.
