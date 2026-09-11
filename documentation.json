@@ -268,5 +268,11 @@
   },
   "logo-dark": "https://blob-cdn.documentation.ai/org-93664c7c-c04c-4ecb-9528-58adb3723e5e/doc-ddb535d3-7aa5-41ed-9a94-090d3bfe947a/1780484221114-kap42yu9s0k-GigaGreenLogo_White-text.svg?fm=auto&auto=compress%2Cformat",
   "logo-light": "https://blob-cdn.documentation.ai/org-93664c7c-c04c-4ecb-9528-58adb3723e5e/doc-ddb535d3-7aa5-41ed-9a94-090d3bfe947a/1780483781084-5nvcm31tib9-GigaGreenLogo.svg?fm=auto&auto=compress%2Cformat",
-  "template": "classic"
+  "template": "classic",
+  "seo": {
+    "robots:index": false,
+    "robots:follow": false,
+    "sitemap:enabled": false,
+    "llms-txt:enabled": false
+  }
 }
